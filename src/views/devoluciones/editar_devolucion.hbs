@@ -1,0 +1,42 @@
+<div class="container p-4">
+      <div class="row">
+          <div class="col-md-4 mx-auto">
+              <div class="card ">
+                  <div class="card-body">
+                     <form action="/devoluciones/editar_devolucion/{{editarDevolucion.DEV_ID}}" method="POST">
+                       <div class="form-group">
+                          <input type="text" value="{{editarDevolucion.AHO_ACOM}}" class="form-control" name="aho_acom" placeholder="Acomodacion" autofocus>
+                       </div>
+                        <div class="form-group">
+                          <input type="text" value="{{editarDevolucion.AHO_EXTRA}}" class="form-control" name="aho_extra" placeholder="extra" >
+                       </div>
+                       <div class="form-group">
+                          <input type="text" value="{{editarDevolucion.AHO_ABONO1}}" class="form-control" name="aho_abono1" placeholder="Abono 1" >
+                       </div>
+                        <div class="form-group">
+                          <input type="text" value="{{editarDevolucion.AHO_ABONO2}}" class="form-control" name="aho_abono2" placeholder="Abono 2" >
+                       </div>
+                       <div class="form-group">
+                          <input type="text" value="{{editarDevolucion.AHO_ABONO3}}" class="form-control" name="aho_abono3" placeholder="Abono 3" >
+                       </div>
+                       <div class="form-group">
+                          <input type="text" value="{{editarDevolucion.AHO_FECHA_ABONO1}}" class="form-control" name="aho_fecha_abono1" placeholder="Fecha Abono 1" >
+                       </div>
+                        <div class="form-group">
+                          <input type="text" value="{{editarDevolucion.AHO_FECHA_ABONO2}}" class="form-control" name="aho_fecha_abono2" placeholder="Fecha Abono 2" >
+                       </div>
+                        <div class="form-group">
+                          <input type="text" value="{{editarDevolucion.AHO_FECHA_ABONO3}}" class="form-control" name="aho_fecha_abono3" placeholder="Fecha Abono 3" >
+                       </div>
+                        <div class="form-group">
+                          <input type="text" value="{{editarDevolucion.AHO_CANCELADO}}" class="form-control" name="aho_cancelado" placeholder="Cancelado" >
+                       </div>
+                       <div class="form-group">
+                           <button class="btn btn-success btn-block">Guardar</button>
+                       </div>
+                     </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+</div>

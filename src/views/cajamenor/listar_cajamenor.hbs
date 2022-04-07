@@ -1,0 +1,44 @@
+<div class="container p-4">
+     <div class="row">
+          <div class="col-md-14">
+              <div class="card text-center">
+                  <div class="card-body">
+                            <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">CJA_ID</th>
+                                <th scope="col">DEV_ID2</th>
+                                <th scope="col">CJA_ID2</th>
+                                <th scope="col">CJA_FECHA</th>
+                                <th scope="col">CJA_BENEFICIARIO</th>
+                                <th scope="col">CJA_CONCEPTO</th>
+                                <th scope="col">CJA_TIPO</th>
+                                <th scope="col">CJA_VALOR</th>
+                                <th scope="col">CJA_ESTADO</th>
+                                <th scope="col">ELIMINAR</th>
+                                <th scope="col">EDITAR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {{#each verCajamenor}}
+                                <tr>
+                                <th scope="row">{{CJA_ID}}</th>
+                                <td>{{DEV_ID2}}</td>
+                                <td>{{CJA_ID2}}</td>
+                                <td>{{CJA_FECHA}}</td>
+                                <td>{{CJA_BENEFICIARIO}}</td>
+                                <td>{{CJA_CONCEPTO}}</td>
+                                <td>{{CJA_TIPO}}</td>
+                                <td>{{CJA_VALOR}}</td>
+                                <td>{{CJA_ESTADO}}</td>
+                                <td><a href="/cajamenor/eliminar_cajamenor/{{CJA_ID}}" class="btn btn-danger">Eliminar</a></td>
+                                <td><a href="/cajamenor/editar_cajamenor/{{CJA_ID}}" class="btn btn-secondary">Editar</a></td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                            </table>
+                  </div>
+              </div>
+          </div>      
+     </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="container p-4">
+      <div class="row">
+          <div class="col-md-4 mx-auto">
+              <div class="card ">
+                  <div class="card-body">
+                     <form action="/cuentas/editar_cuenta/{{editarCuenta.CTA_ID}}" method="POST">
+                       <div class="form-group">
+                          <input type="text" value="{{editarCuenta.CTA_BANCO}}" class="form-control" name="cta_banco" placeholder="Banco" autofocus>
+                       </div>
+                        <div class="form-group">
+                          <input type="text" value="{{editarCuenta.CTA_NUMEROCUENTA}}" class="form-control" name="cta_numerocuenta" placeholder="Numero Cuenta" >
+                       </div>
+                       <div class="form-group">
+                          <input type="text" value="{{editarCuenta.CTA_NOMBRE}}" class="form-control" name="cta_nombre" placeholder="Nombre Cuenta" >
+                       </div>
+                       <div class="form-group">
+                           <button class="btn btn-success btn-block">Guardar</button>
+                       </div>
+                     </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+</div>

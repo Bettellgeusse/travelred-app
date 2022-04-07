@@ -1,0 +1,35 @@
+<div class="container p-4">
+     <div class="row">
+          <div class="col-md-14">
+              <div class="card text-center">
+                  <div class="card-body">
+                            <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">GRP_ID</th>
+                                <th scope="col">GRP_VALORTOTAL</th>
+                                <th scope="col">GRP_VALORSALDO</th>
+                                <th scope="col">GRP_OBSERVACION</th>
+                                <th scope="col">ELIMINAR</th>
+                                <th scope="col">EDITAR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {{#each vergrupos}}
+                                <tr>
+                                <th scope="row">{{GRP_ID}}</th>
+                                <td>{{GRP_VALORTOTAL}}</td>
+                                <td>{{GRP_VALORSALDO}}</td>
+                                <td>{{GRP_OBSERVACION}}</td>
+                                <td><a href="/grupos/eliminar_grupo/{{GRP_ID}}" class="btn btn-danger">Eliminar</a></td>
+                                <td><a href="/grupos/editar_grupo/{{GRP_ID}}" class="btn btn-secondary">Editar</a></td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                            </table>
+                  </div>
+              </div>
+          </div>
+    
+     </div>
+</div>

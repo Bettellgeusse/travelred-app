@@ -1,0 +1,32 @@
+<div class="container p-4">
+      <div class="row">
+          <div class="col-md-4 mx-auto">
+              <div class="card ">
+                  <div class="card-body">
+                     <form action="/cajamayor/editar_cajamayor/{{editarCajamayor.CJA_ID}}" method="POST">
+                       <div class="form-group">
+                          <input type="text" value="{{editarCajamayor.CJA_FECHA}}" class="form-control" name="cja_fecha" placeholder="Fecha" autofocus>
+                       </div>
+                        <div class="form-group">
+                          <input type="text" value="{{editarCajamayor.CJA_BENEFICIARIO}}" class="form-control" name="cja_Beneficiario" placeholder="Beneficiario" >
+                       </div>
+                       <div class="form-group">
+                          <input type="text" value="{{editarCajamayor.CJA_CONCEPTO}}" class="form-control" name="cja_concepto" placeholder="Concepto" >
+                       </div>
+                        <div class="form-group">
+                          <input type="text" value="{{editarCajamayor.CJA_TIPO}}" class="form-control" name="cja_tipo" placeholder="Tipo" >
+                       </div>
+                       <div class="form-group">
+                          <input type="text" value="{{editarCajamayor.CJA_VALOR}}" class="form-control" name="cja_valor" placeholder="Valor" >
+                       </div>
+                       <div class="form-group">
+                          <input type="text" value="{{editarCajamayor.CJA_ESTADO}}" class="form-control" name="cja_estado" placeholder="Estado" >
+                       <div class="form-group">
+                           <button class="btn btn-success btn-block">Guardar</button>
+                       </div>
+                     </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="container p-4">
+     <div class="row">
+          <div class="col-md-14">
+              <div class="card text-center">
+                  <div class="card-body">
+                            <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">TOU_ID</th>
+                                <th scope="col">TOU_NOMBRE</th>
+                                <th scope="col">TOU_TIPO</th>
+                                <th scope="col">TOU_VALORNETO</th>
+                                <th scope="col">TOU_VALORCOMISIONABLE</th>
+                                <th scope="col">TOU_OBSERVACIONES</th>
+                                <th scope="col">TOU_FECHA</th>
+                                <th scope="col">ELIMINAR</th>
+                                <th scope="col">EDITAR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {{#each vertours}}
+                                <tr>
+                                <th scope="row">{{TOU_ID}}</th>
+                                <td>{{TOU_NOMBRE}}</td>
+                                <td>{{TOU_TIPO}}</td>
+                                <td>{{TOU_VALORNETO}}</td>
+                                <td>{{TOU_VALORCOMISIONABLE}}</td>
+                                <td>{{TOU_OBSERVACIONES}}</td>
+                                <td>{{TOU_FECHA}}</td>
+                                <td><a href="/tours/eliminar_tour/{{TOU_ID}}" class="btn btn-danger">Eliminar</a></td>
+                                <td><a href="/tours/editar_tour/{{TOU_ID}}" class="btn btn-secondary">Editar</a></td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                            </table>
+                  </div>
+              </div>
+          </div>  
+     </div>
+</div>

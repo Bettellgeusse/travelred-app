@@ -1,0 +1,110 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      {{#if user}}
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Clientes
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/links/lista_clientes">Ver Clientes</a></li>
+            <li><a class="dropdown-item" href="/links/add">Agregar Clientes</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Ahorros
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/ahorro/lista_ahorros">Ver Ahorros</a></li>
+            <li><a class="dropdown-item" href="/ahorro/add_ahorro">Agregar Ahorro</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Cuentas
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/cuentas/listar_cuentas">Ver Cuentas</a></li>
+            <li><a class="dropdown-item" href="/cuentas/add_cuenta">Agregar Cuenta</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Grupos
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/grupos/listar_grupos">Ver Grupos</a></li>
+            <li><a class="dropdown-item" href="/grupos/add_grupo">Agregar Grupos</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Tours
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/tours/listar_tours">Ver Tours</a></li>
+            <li><a class="dropdown-item" href="/tours/add_tour">Agregar Tour</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Reservas
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/reservas/listar_reservas">Ver Reservas</a></li>
+            <li><a class="dropdown-item" href="/reservas/add_reserva">Agregar Reserva</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Caja Mayor
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/cajamayor/listar_cajamayor">Ver Caja Mayor</a></li>
+            <li><a class="dropdown-item" href="/cajamayor/add_cajamayor">Agregar en Caja Mayor</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Caja Menor
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/cajamenor/listar_cajamenor">Ver Caja Menor</a></li>
+            <li><a class="dropdown-item" href="/cajamenor/add_cajamenor">Agregar en Caja Menor</a></li>
+          </ul>
+        </li>            
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Devoluciones
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/devoluciones/listar_devolucion">Ver Devoluciones</a></li>
+            <li><a class="dropdown-item" href="/devoluciones/add_devolucion">Agregar Devolucion</a></li>
+          </ul>
+        </li>  
+
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/logout">Cerrar Sesion</a>
+         </li> 
+       {{/if}}
+      </ul>
+
+    </div>
+  </div>
+</nav>

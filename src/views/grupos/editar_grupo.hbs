@@ -1,0 +1,24 @@
+<div class="container p-4">
+      <div class="row">
+          <div class="col-md-4 mx-auto">
+              <div class="card ">
+                  <div class="card-body">
+                     <form action="/grupos/editar_grupo/{{editarGrupo.GRP_ID}}" method="POST">
+                       <div class="form-group">
+                          <input type="text" value="{{editarGrupo.GRP_VALORTOTAL}}" class="form-control" name="grp_valortotal" placeholder="Valor Total" autofocus>
+                       </div>
+                        <div class="form-group">
+                          <input type="text" value="{{editarGrupo.GRP_VALORSALDO}}" class="form-control" name="grp_valorsaldo" placeholder="Valor Saldo" >
+                       </div>
+                       <div class="form-group">
+                          <input type="text" value="{{editarGrupo.GRP_OBSERVACION	}}" class="form-control" name="grp_observacion" placeholder="Observaciones" >
+                       </div>
+                       <div class="form-group">
+                           <button class="btn btn-success btn-block">Guardar</button>
+                       </div>
+                     </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+</div>

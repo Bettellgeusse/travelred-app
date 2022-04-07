@@ -1,0 +1,37 @@
+<div class="container p-4">
+     <div class="row">
+          <div class="col-md-14">
+              <div class="card text-center">
+                  <div class="card-body">
+                            <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">CTA_ID</th>
+                                <th scope="col">CJA_ID</th>
+                                <th scope="col">CTA_BANCO</th>
+                                <th scope="col">CTA_NUMEROCUENTA</th>
+                                <th scope="col">CTA_NOMBRE</th>
+                                <th scope="col">ELIMINAR</th>
+                                <th scope="col">EDITAR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {{#each vercuenta}}
+                                <tr>
+                                <th scope="row">{{CTA_ID}}</th>
+                                <td>{{CJA_ID}}</td>
+                                <td>{{CTA_BANCO}}</td>
+                                <td>{{CTA_NUMEROCUENTA}}</td>
+                                <td>{{CTA_NOMBRE}}</td>
+                                <td><a href="/cuentas/eliminar_cuenta/{{CTA_ID}}" class="btn btn-danger">Eliminar</a></td>
+                                <td><a href="/cuentas/editar_cuenta/{{CTA_ID}}" class="btn btn-secondary">Editar</a></td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                            </table>
+                  </div>
+              </div>
+          </div>
+    
+     </div>
+</div>

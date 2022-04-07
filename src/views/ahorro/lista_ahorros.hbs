@@ -1,0 +1,45 @@
+<div class="container p-4">
+     <div class="row">
+          <div class="col-md-14">
+              <div class="card text-center">
+                  <div class="card-body">
+                            <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">DEV_ID2</th>
+                                <th scope="col">AHO_ACOM</th>
+                                <th scope="col">AHO_EXTRA</th>
+                                <th scope="col">AHO_ABONO1</th>
+                                <th scope="col">AHO_ABONO2</th>
+                                <th scope="col">AHO_ABONO3</th>
+                                <th scope="col">AHO_FECHA_ABONO1</th>
+                                <th scope="col">AHO_FECHA_ABONO</th>
+                                <th scope="col">AHO_FECHA_ABONO3</th>
+                                <th scope="col">ELIMINAR</th>
+                                <th scope="col">EDITAR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {{#each verahorro}}
+                                <tr>
+                                <th scope="row">{{DEV_ID2}}</th>
+                                <td>{{AHO_ACOM}}</td>
+                                <td>{{AHO_EXTRA}}</td>
+                                <td>{{AHO_ABONO1}}</td>
+                                <td>{{AHO_ABONO2}}</td>
+                                <td>{{AHO_ABONO3}}</td>
+                                <td>{{AHO_FECHA_ABONO1}}</td>
+                                <td>{{AHO_FECHA_ABONO2}}</td>
+                                <td>{{AHO_FECHA_ABONO3}}</td>
+                                <td><a href="/ahorro/eliminar_ahorro/{{DEV_ID2}}" class="btn btn-danger">Eliminar</a></td>
+                                <td><a href="/ahorro/editar_ahorro/{{DEV_ID2}}" class="btn btn-secondary">Editar</a></td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                            </table>
+                  </div>
+              </div>
+          </div>
+       
+     </div>
+</div>

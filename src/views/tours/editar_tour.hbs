@@ -1,0 +1,33 @@
+<div class="container p-4">
+      <div class="row">
+          <div class="col-md-4 mx-auto">
+              <div class="card ">
+                  <div class="card-body">
+                     <form action="/tours/editar_tour/{{editarTour.TOU_ID}}" method="POST">
+                       <div class="form-group">
+                          <input type="text" value="{{editarTour.TOU_NOMBRE}}" class="form-control" name="tou_nombre" placeholder="Nombre" autofocus>
+                       </div>
+                        <div class="form-group">
+                          <input type="text" value="{{editarTour.TOU_TIPO}}" class="form-control" name="tou_tipo" placeholder="Tipo Tour" >
+                       </div>
+                       <div class="form-group">
+                          <input type="text" value="{{editarTour.TOU_VALORNETO}}" class="form-control" name="tou_valorneto" placeholder="Valor Neto tour" >
+                       </div>
+                        <div class="form-group">
+                          <input type="text" value="{{editarTour.TOU_VALORCOMISIONABLE}}" class="form-control" name="tou_valorcomisionable" placeholder="Valor comisionable" >
+                       </div>
+                       <div class="form-group">
+                          <input type="text" value="{{editarTour.TOU_OBSERVACIONES}}" class="form-control" name="tou_observaciones" placeholder="Observaciones" >
+                       </div>
+                       <div class="form-group">
+                          <input type="text" value="{{editarTour.TOU_FECHA}}" class="form-control" name="tou_fecha" placeholder="Fecha" >
+                       </div>
+                       <div class="form-group">
+                           <button class="btn btn-success btn-block">Guardar</button>
+                       </div>
+                     </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+</div>
