@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { isLoggedIn } = require('../lib/auth');
 
-router.get('/prueba',  (req, res) => {
+router.get('/',  (req, res) => {
    res.send('Hola maricas');
 });
 
