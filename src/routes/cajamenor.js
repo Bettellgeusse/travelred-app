@@ -1,7 +1,7 @@
 const express = require('express');
 const { body } = require('express-validator');
 const router = express.Router();
-
+const { validateCajamenor } = require('../validators/cajamenor');
 const pool = require('../database');
 const { isLoggedIn } = require('../lib/auth');
 
@@ -9,7 +9,7 @@ router.get('/add_cajamenor',(req, res) => {
        res.render('cajamenor/add_cajamenor');
 });
 
-router.post('/add_cajamenor', async (req, res) => {
+router.post('/add_cajamenor', validateCajamenor, async (req, res) => {
     const {cja_fecha, cja_Beneficiario, cja_concepto, cja_tipo,cja_valor,cja_estado } = req.body;
     const nuevaCajamenor ={
         cja_fecha, 
@@ -29,8 +29,8 @@ router.post('/add_cajamenor', async (req, res) => {
 
     router.get('/listar_cajamenor',  async (req, res) => {
         const verCajamenor = await pool.query('SELECT * FROM cajamenor');
-        res.render('cajamenor/listar_cajamenor', {verCajamenor:verCajamenor});
-        //return res.json(vercliente);
+        //res.render('cajamenor/listar_cajamenor', {verCajamenor:verCajamenor});
+        return res.json(verCajamenor);
     });
 
     router.get('/eliminar_cajamenor/:id', async (req, res) => {

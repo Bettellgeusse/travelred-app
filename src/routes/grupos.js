@@ -1,7 +1,7 @@
 const express = require('express');
 const { body } = require('express-validator');
 const router = express.Router();
-
+const { validategrupos } = require('../validators/grupos');
 const pool = require('../database');
 const { isLoggedIn } = require('../lib/auth');
 
@@ -9,7 +9,7 @@ router.get('/add_grupo',(req, res) => {
        res.render('grupos/add_grupo');
 });
 
-router.post('/add_grupo', async (req, res) => {
+router.post('/add_grupo', validategrupos, async (req, res) => {
     const {grp_valortotal, grp_valorsaldo, grp_observacion } = req.body;
     const nuevoGrupo ={
         grp_valortotal, 
@@ -27,7 +27,7 @@ router.post('/add_grupo', async (req, res) => {
     router.get('/listar_grupos',  async (req, res) => {
         const vergrupos = await pool.query('SELECT * FROM grupo');
         res.render('grupos/listar_grupos', {vergrupos:vergrupos});
-        //return res.json(vercliente);
+        return res.json(vergrupos);
     });
 
     router.get('/eliminar_grupo/:id', async (req, res) => {

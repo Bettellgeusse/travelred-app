@@ -29,13 +29,13 @@ router.post('/add', validateCliente ,async (req, res) => {
     //res.json({"message":"Registro Agregado  correctamente"})
     req.flash('success','Cliente Agregado Correctamente');
     res.redirect('/links/lista_clientes');
-  //  }
+  
 });
 
     router.get('/lista_clientes',  async (req, res) => {
         const vercliente = await pool.query('SELECT * FROM cliente');
-        res.render('links/lista_clientes', {vercliente:vercliente});
-        //return res.json(vercliente);
+        //res.render('links/lista_clientes', {vercliente:vercliente});
+        return res.json(vercliente);
     });
 
     router.get('/eliminar_cliente/:id', isLoggedIn,async (req, res) => {

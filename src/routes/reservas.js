@@ -1,7 +1,7 @@
 const express = require('express');
 const { body } = require('express-validator');
 const router = express.Router();
-
+const { validatereservas } = require('../validators/reservas');
 const pool = require('../database');
 const { isLoggedIn } = require('../lib/auth');
 
@@ -9,7 +9,7 @@ router.get('/add_reserva',(req, res) => {
        res.render('reservas/add_reserva');
 });
 
-router.post('/add_reserva', async (req, res) => {
+router.post('/add_reserva',validatereservas, async (req, res) => {
     const {res_acom, res_extra, res_abono1, res_abono2,res_abono3,res_observaciones,res_fecha_abono1,res_fecha_abono2,res_fecha_abono3 } = req.body;
     const nuevaReserva ={
         res_acom, 

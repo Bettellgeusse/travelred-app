@@ -1,7 +1,7 @@
 const express = require('express');
 const { body } = require('express-validator');
 const router = express.Router();
-
+const { validateTours } = require('../validators/tours');
 const pool = require('../database');
 const { isLoggedIn } = require('../lib/auth');
 
@@ -9,7 +9,7 @@ router.get('/add_tour',(req, res) => {
        res.render('tours/add_tour');
 });
 
-router.post('/add_tour', async (req, res) => {
+router.post('/add_tour', validateTours, async (req, res) => {
     const {tou_nombre, tou_tipo, tou_valorneto, tou_valorcomisionable,tou_observaciones,tou_fecha } = req.body;
     const nuevoTour ={
         tou_nombre, 
@@ -29,8 +29,8 @@ router.post('/add_tour', async (req, res) => {
 
     router.get('/listar_tours',  async (req, res) => {
         const vertours = await pool.query('SELECT * FROM tour');
-        res.render('tours/listar_tours', {vertours:vertours});
-        //return res.json(vercliente);
+        //res.render('tours/listar_tours', {vertours:vertours});
+        return res.json(vertours);
     });
 
     router.get('/eliminar_tour/:id', async (req, res) => {

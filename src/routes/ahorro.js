@@ -1,7 +1,7 @@
 const express = require('express');
-const { body } = require('express-validator');
 const router = express.Router();
-
+const { body } = require('express-validator');
+const { validateahorro } = require('../validators/ahorro');
 const pool = require('../database');
 const { isLoggedIn } = require('../lib/auth');
 
@@ -9,7 +9,7 @@ router.get('/add_ahorro',(req, res) => {
        res.render('ahorro/add_ahorro');
 });
 
-router.post('/add_ahorro', async (req, res) => {
+router.post('/add_ahorro', validateahorro, async (req, res) => {
     const {aho_acom, aho_extra, aho_abono1, aho_abono2, aho_abono3, aho_fecha_abono1, aho_fecha_abono2, aho_fecha_abono3 } = req.body;
     const nuevoAhorro ={
         aho_acom, 
@@ -31,8 +31,8 @@ router.post('/add_ahorro', async (req, res) => {
 
     router.get('/lista_ahorros',  async (req, res) => {
         const verahorro = await pool.query('SELECT * FROM ahorro');
-        res.render('ahorro/lista_ahorros', {verahorro:verahorro});
-        //return res.json(vercliente);
+        //res.render('ahorro/lista_ahorros', {verahorro:verahorro});
+        return res.json(verahorro);
     });
 
     router.get('/eliminar_ahorro/:id', async (req, res) => {

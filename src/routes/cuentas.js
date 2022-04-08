@@ -1,7 +1,7 @@
 const express = require('express');
 const { body } = require('express-validator');
 const router = express.Router();
-
+const { validateCuentas } = require('../validators/cuentas');
 const pool = require('../database');
 const { isLoggedIn } = require('../lib/auth');
 
@@ -9,7 +9,7 @@ router.get('/add_cuenta',(req, res) => {
        res.render('cuentas/add_cuenta');
 });
 
-router.post('/add_cuenta', async (req, res) => {
+router.post('/add_cuenta', validateCuentas, async (req, res) => {
     const {cta_banco, cta_numerocuenta, cta_nombre } = req.body;
     const nuevaCuenta ={
         cta_banco, 
@@ -26,8 +26,8 @@ router.post('/add_cuenta', async (req, res) => {
 
     router.get('/listar_cuentas',  async (req, res) => {
         const vercuenta = await pool.query('SELECT * FROM cuentas');
-        res.render('cuentas/listar_cuentas', {vercuenta:vercuenta});
-        //return res.json(vercliente);
+        //res.render('cuentas/listar_cuentas', {vercuenta:vercuenta});
+        return res.json(vercuenta);
     });
 
     router.get('/eliminar_cuenta/:id', async (req, res) => {
