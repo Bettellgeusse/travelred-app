@@ -34,8 +34,8 @@ router.post('/add', validateCliente ,async (req, res) => {
 
     router.get('/lista_clientes',  async (req, res) => {
         const vercliente = await pool.query('SELECT * FROM cliente');
-        res.render('clientes/lista_clientes', {vercliente:vercliente});
-        //return res.json(vercliente);
+        //res.render('clientes/lista_clientes', {vercliente:vercliente});
+        return res.json(vercliente);
     });
 
     router.get('/eliminar_cliente/:id', isLoggedIn,async (req, res) => {

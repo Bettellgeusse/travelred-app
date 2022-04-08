@@ -32,6 +32,7 @@ router.post('/add_reserva',validatereservas, async (req, res) => {
 
     router.get('/listar_reservas',  async (req, res) => {
         const verReserva = await pool.query('SELECT * FROM reserva');
+        //const verReserva = await pool.query('SELECT CLN_NOMBRE, CLN_CEDULA, 	RES_ACOM, RES_EXTRA, RES_ABONO1,RES_ABONO2,RES_ABONO3,RES_OBSERVACIONES,RES_FECHA_ABONO1,RES_FECHA_ABONO2,RES_FECHA_ABONO3 From cliente INNER JOIN reserva ON reserva.CLN_ID = cliente.CLN_ID');
         //res.render('reservas/listar_reservas', {verReserva:verReserva});
         return res.json(verReserva);
     });
