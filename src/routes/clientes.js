@@ -8,7 +8,7 @@ const pool = require('../database');
 const { isLoggedIn } = require('../lib/auth');
 
 router.get('/add',isLoggedIn, (req, res) => {
-       res.render('links/add');
+       res.render('clientes/add');
 });
 
 router.post('/add', validateCliente ,async (req, res) => {
@@ -28,28 +28,28 @@ router.post('/add', validateCliente ,async (req, res) => {
     await pool.query('INSERT INTO cliente set ?', [nuevoUsuario]);
     //res.json({"message":"Registro Agregado  correctamente"})
     req.flash('success','Cliente Agregado Correctamente');
-    res.redirect('/links/lista_clientes');
+    res.redirect('/clientes/lista_clientes');
   
 });
 
     router.get('/lista_clientes',  async (req, res) => {
         const vercliente = await pool.query('SELECT * FROM cliente');
-        //res.render('links/lista_clientes', {vercliente:vercliente});
-        return res.json(vercliente);
+        res.render('clientes/lista_clientes', {vercliente:vercliente});
+        //return res.json(vercliente);
     });
 
     router.get('/eliminar_cliente/:id', isLoggedIn,async (req, res) => {
         const {id} = req.params;
          await pool.query('DELETE FROM cliente WHERE CLN_ID = ?',[id]);
         req.flash('success','Cliente Eliminado Correctamente');
-        res.redirect('/links/lista_clientes');
+        res.redirect('/clientes/lista_clientes');
         //res.json({"message":"Registro Eliminado  correctamente"})
     });
 
     router.get('/editar_cliente/:id', isLoggedIn, async (req, res) => {
         const {id} = req.params;
         const editarcliente = await pool.query('SELECT * FROM cliente WHERE CLN_ID = ?',[id]);
-        res.render('links/editar_cliente',{editarcliente:editarcliente[0]} );
+        res.render('clientes/editar_cliente',{editarcliente:editarcliente[0]} );
         
     });
 
@@ -70,7 +70,7 @@ router.post('/add', validateCliente ,async (req, res) => {
         await pool.query('UPDATE cliente set ? WHERE CLN_ID = ?', [editarUsuario,id]);
         //res.json({"message":"Registro Agregado  correctamente"})
         req.flash('success','Cliente Actualizado Correctamente');
-        res.redirect('/links/lista_clientes');
+        res.redirect('/clientes/lista_clientes');
     });
 
 
