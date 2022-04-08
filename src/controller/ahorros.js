@@ -31,7 +31,7 @@ const getAhorro = async (req, res) => {
     return res.json(verahorro);
 }
 
-const deleteAhrro = async (req, res) => {
+const deleteAhorro = async (req, res) => {
     const {id} = req.params;
      await pool.query('DELETE FROM ahorro WHERE DEV_ID2 = ?',[id]);
     req.flash('success','Ahorro Eliminado Correctamente');
@@ -66,4 +66,4 @@ const putahorro = async (req, res) => {
     res.redirect('/ahorro/lista_ahorros');
 }
 
-module.exports = { postAhorro, getAhorro, deleteAhrro, getEditAhorro, putahorro}
+module.exports = { postAhorro, getAhorro, deleteAhorro, getEditAhorro, putahorro}
