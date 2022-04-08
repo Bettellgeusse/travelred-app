@@ -6,7 +6,7 @@ router.get('/',  (req, res) => {
    res.send('Hola maricas');
 });
 
-router.get('/ahorro', isLoggedIn, (req, res) => {
+router.get('/ahorro',  (req, res) => {
    res.render('ahorro/add_ahorro');
 });
 
