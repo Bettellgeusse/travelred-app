@@ -28,6 +28,7 @@ router.post('/signin', (req,res, next)=>{
 
 router.get('/inicio', isLoggedIn, (req,res)=>{
     res.render('inicio');
+    console.log('adentro');
 });
 
 router.get('/logout',  (req,res)=>{

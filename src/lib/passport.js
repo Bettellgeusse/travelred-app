@@ -23,44 +23,51 @@ passport.use('local.signin', new LocalStrategy({
      }
      else{
        done(null, false, req.flash('message','Incorrecto'));
+       console.log('incorrecto')
      }
    }else{
+      console.log('no existe')
       return done(null, false, req.flash('message','Nombre de usuario no existe'));
+      
    }
 
 
 }));
 
 passport.use('local.signup', new LocalStrategy({
-     usernameField:'rol_nombre',
-     passwordField:'rol_password',
+     usernameField:'ROL_NOMBRE',
+     passwordField:'ROL_PASSWORD',
      passReqToCallback: true
-}, async (req, rol_nombre, rol_password, done) => {
-      const { rol_apellido,rol_celular, rol_correo, rol_cedula, rol_cargo, rol_valorcomision} = req.body;
+}, async (req, ROL_NOMBRE, ROL_PASSWORD, done) => {
+      const { ROL_APELLIDO,ROL_CELULAR, ROL_CORREO, ROL_CEDULA, ROL_CARGO, ROL_VALORCOMISION} = req.body;
       const nuevoUsuario = {
-        rol_nombre,
-        rol_password,
-        rol_apellido,
-        rol_celular, 
-        rol_correo, 
-        rol_cedula, 
-        rol_cargo, 
-        rol_valorcomision
+         ROL_NOMBRE,
+         ROL_PASSWORD,
+         ROL_APELLIDO,
+         ROL_CELULAR, 
+         ROL_CORREO, 
+         ROL_CEDULA, 
+         ROL_CARGO, 
+         ROL_VALORCOMISION
       }
-      nuevoUsuario.rol_password = await helpers.encryptPassword(rol_password);
+      nuevoUsuario.ROL_PASSWORD = await helpers.encryptPassword(ROL_PASSWORD);
       const resultado = await pool.query('INSERT INTO rol SET ?', [nuevoUsuario]);
-      nuevoUsuario.id = resultado.insertId;
+      nuevoUsuario.ROL_ID = resultado.insertId;
+      //console.log(nuevoUsuario);
       return done(null, nuevoUsuario);
 }));
 
  passport.serializeUser((user, done)=> {
+  // console.log('por aca estoy ');
    done(null, user.ROL_ID);
+   //console.log(user.rol_nombre);
+   //console.log(user.rol_id);
 });
 
 passport.deserializeUser(async (ROL_ID, done)=> {
     
     const rows = await pool.query('SELECT * FROM rol WHERE ROL_ID = ?', [ROL_ID]);
-    //console.log('estoy aqui ');
-    //console.log(rows);
+    console.log('estoy aqui ');
+    console.log(rows);
     done(null, rows[0]);
  });
