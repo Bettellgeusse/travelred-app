@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const { isLoggedIn } = require('../lib/auth');
 
-router.get('/',  (req, res) => {
-   res.send('Hola maricas');
+router.get('/', isLoggedIn, (req, res) => {
+   res.send('Hola desde Travelred');
 });
 
-router.get('/ahorro',  (req, res) => {
+router.get('/ahorro', isLoggedIn, (req, res) => {
    res.render('ahorro/add_ahorro');
 });
 
