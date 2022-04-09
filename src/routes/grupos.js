@@ -26,7 +26,7 @@ router.post('/add_grupo', validategrupos, async (req, res) => {
 
     router.get('/listar_grupos',  async (req, res) => {
         const vergrupos = await pool.query('SELECT * FROM grupo');
-        res.render('grupos/listar_grupos', {vergrupos:vergrupos});
+        //res.render('grupos/listar_grupos', {vergrupos:vergrupos});
         return res.json(vergrupos);
     });
 

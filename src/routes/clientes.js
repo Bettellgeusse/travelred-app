@@ -7,7 +7,7 @@ const router = express.Router();
 const pool = require('../database');
 const { isLoggedIn } = require('../lib/auth');
 
-router.get('/add',isLoggedIn, (req, res) => {
+router.get('/add', (req, res) => {
        res.render('clientes/add');
 });
 
@@ -38,7 +38,7 @@ router.post('/add', validateCliente ,async (req, res) => {
         return res.json(vercliente);
     });
 
-    router.get('/eliminar_cliente/:id', isLoggedIn,async (req, res) => {
+    router.get('/eliminar_cliente/:id', async (req, res) => {
         const {id} = req.params;
          await pool.query('DELETE FROM cliente WHERE CLN_ID = ?',[id]);
         req.flash('success','Cliente Eliminado Correctamente');
@@ -46,7 +46,7 @@ router.post('/add', validateCliente ,async (req, res) => {
         //res.json({"message":"Registro Eliminado  correctamente"})
     });
 
-    router.get('/editar_cliente/:id', isLoggedIn, async (req, res) => {
+    router.get('/editar_cliente/:id',  async (req, res) => {
         const {id} = req.params;
         const editarcliente = await pool.query('SELECT * FROM cliente WHERE CLN_ID = ?',[id]);
         res.render('clientes/editar_cliente',{editarcliente:editarcliente[0]} );
