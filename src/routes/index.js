@@ -2,39 +2,39 @@ const express = require('express');
 const router = express.Router();
 const { isLoggedIn } = require('../lib/auth');
 
-router.get('/', isLoggedIn, (req, res) => {
+router.get('/',  (req, res) => {
    res.send('Hola desde Travelred');
 });
 
-router.get('/ahorro', isLoggedIn, (req, res) => {
+router.get('/ahorro',  (req, res) => {
    res.render('ahorro/add_ahorro');
 });
 
-router.get('/cuentas', isLoggedIn, (req, res) => {
+router.get('/cuentas',  (req, res) => {
    res.render('cuentas/add_cuenta');
 });
 
-router.get('/grupos', isLoggedIn, (req, res) => {
+router.get('/grupos', (req, res) => {
    res.render('grupos/add_grupo');
 });
 
-router.get('/tours', isLoggedIn, (req, res) => {
+router.get('/tours',  (req, res) => {
    res.render('tours/add_tour');
 });
 
-router.get('/reservas', isLoggedIn, (req, res) => {
+router.get('/reservas',  (req, res) => {
    res.render('reservas/add_reserva');
 });
 
-router.get('/cajamayor', isLoggedIn, (req, res) => {
+router.get('/cajamayor',  (req, res) => {
    res.render('cajamayor/add_cajamayor');
 });
 
-router.get('/cajamenor', isLoggedIn, (req, res) => {
+router.get('/cajamenor', (req, res) => {
    res.render('cajamenor/add_cajamenor');
 });
 
-router.get('/devoluciones', isLoggedIn, (req, res) => {
+router.get('/devoluciones', (req, res) => {
    res.render('devoluciones/add_devolucion');
 });
 

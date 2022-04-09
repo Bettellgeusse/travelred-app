@@ -12,6 +12,7 @@ helpers.matchPassword = async (password, savedPassword) => {
    try {
     return await bcrypt.compareSync(password, savedPassword);
    } catch (e) {
+       console.log('no deberia entrar aqui')
        console.log(e);
    }
 };

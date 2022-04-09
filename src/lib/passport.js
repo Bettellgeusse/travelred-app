@@ -19,6 +19,7 @@ passport.use('local.signin', new LocalStrategy({
 
      if(validPassword){
         done(null, user, req.flash('success','Bienvenido' + user.ROL_NOMBRE));
+        console.log('A pasado la validacion');
         console.log(user);
      }
      else{
