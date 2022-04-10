@@ -10,18 +10,18 @@ router.get('/add_grupo',(req, res) => {
 });
 
 router.post('/add_grupo', validategrupos, async (req, res) => {
-    const {grp_valortotal, grp_valorsaldo, grp_observacion } = req.body;
-    const nuevoGrupo ={
-        grp_valortotal, 
-        grp_valorsaldo, 
-        grp_observacion
-    };
-    //const nuevoUsuario = req.body;
+    // const {grp_valortotal, grp_valorsaldo, grp_observacion } = req.body;
+    // const nuevoGrupo ={
+    //     grp_valortotal, 
+    //     grp_valorsaldo, 
+    //     grp_observacion
+    // };
+    const nuevoGrupo = req.body;
     console.log(nuevoGrupo);
     await pool.query('INSERT INTO grupo set ?', [nuevoGrupo]);
-    //res.json({"message":"Registro Agregado  correctamente"})
-    req.flash('success','Grupo Agregado Correctamente');
-    res.redirect('/grupos/listar_grupos');
+    res.json({"message":"Registro Agregado  correctamente"})
+    //req.flash('success','Grupo Agregado Correctamente');
+    //res.redirect('/grupos/listar_grupos');
 });
 
     router.get('/listar_grupos',  async (req, res) => {
@@ -33,9 +33,9 @@ router.post('/add_grupo', validategrupos, async (req, res) => {
     router.get('/eliminar_grupo/:id', async (req, res) => {
         const {id} = req.params;
          await pool.query('DELETE FROM grupo WHERE GRP_ID  = ?',[id]);
-        req.flash('success','Grupo Eliminao Correctamente');
-        res.redirect('/grupos/listar_grupos');
-        //res.json({"message":"Registro Eliminado  correctamente"})
+        //req.flash('success','Grupo Eliminao Correctamente');
+        //res.redirect('/grupos/listar_grupos');
+        res.json({"message":"Registro Eliminado  correctamente"})
     });
 
     router.get('/editar_grupo/:id',  async (req, res) => {
@@ -47,17 +47,17 @@ router.post('/add_grupo', validategrupos, async (req, res) => {
 
     router.post('/editar_grupo/:id',  async (req, res) => {
         const {id} = req.params;
-        const {grp_valortotal, grp_valorsaldo, grp_observacion } = req.body;
-        const nuevoGrupo ={
-            grp_valortotal, 
-            grp_valorsaldo, 
-            grp_observacion
-        };
-        // const editarUsuario = req.body;
+        // const {grp_valortotal, grp_valorsaldo, grp_observacion } = req.body;
+        // const nuevoGrupo ={
+        //     grp_valortotal, 
+        //     grp_valorsaldo, 
+        //     grp_observacion
+        // };
+        const nuevoGrupo = req.body;
         await pool.query('UPDATE grupo set ? WHERE GRP_ID = ?', [nuevoGrupo,id]);
-        //res.json({"message":"Registro Agregado  correctamente"})
-        req.flash('success','Grupo Actualizado Correctamente');
-        res.redirect('/grupos/listar_grupos');
+        res.json({"message":"Registro Agregado  correctamente"})
+        //req.flash('success','Grupo Actualizado Correctamente');
+        //res.redirect('/grupos/listar_grupos');
     });
 
 

@@ -10,21 +10,21 @@ router.get('/add_cajamenor',(req, res) => {
 });
 
 router.post('/add_cajamenor', validateCajamenor, async (req, res) => {
-    const {cja_fecha, cja_Beneficiario, cja_concepto, cja_tipo,cja_valor,cja_estado } = req.body;
-    const nuevaCajamenor ={
-        cja_fecha, 
-        cja_Beneficiario,
-        cja_concepto, 
-        cja_tipo,
-        cja_valor,
-        cja_estado
-    };
-    //const nuevoUsuario = req.body;
+    // const {cja_fecha, cja_Beneficiario, cja_concepto, cja_tipo,cja_valor,cja_estado } = req.body;
+    // const nuevaCajamenor ={
+    //     cja_fecha, 
+    //     cja_Beneficiario,
+    //     cja_concepto, 
+    //     cja_tipo,
+    //     cja_valor,
+    //     cja_estado
+    // };
+    const nuevaCajamenor = req.body;
     console.log(nuevaCajamenor);
     await pool.query('INSERT INTO cajamenor set ?', [nuevaCajamenor]);
-    //res.json({"message":"Registro Agregado  correctamente"})
-    req.flash('success','Agregada Correctamente');
-    res.redirect('/cajamenor/listar_cajamenor');
+    res.json({"message":"Registro Agregado  correctamente"})
+    //req.flash('success','Agregada Correctamente');
+    //res.redirect('/cajamenor/listar_cajamenor');
 });
 
     router.get('/listar_cajamenor',  async (req, res) => {
@@ -36,9 +36,9 @@ router.post('/add_cajamenor', validateCajamenor, async (req, res) => {
     router.get('/eliminar_cajamenor/:id', async (req, res) => {
         const {id} = req.params;
          await pool.query('DELETE FROM cajamenor WHERE CJA_ID  = ?',[id]);
-        req.flash('success','Eliminada Correctamente');
-        res.redirect('/cajamenor/listar_cajamenor');
-        //res.json({"message":"Registro Eliminado  correctamente"})
+        //req.flash('success','Eliminada Correctamente');
+        //res.redirect('/cajamenor/listar_cajamenor');
+        res.json({"message":"Registro Eliminado  correctamente"})
     });
 
     router.get('/editar_cajamenor/:id',  async (req, res) => {
@@ -50,20 +50,20 @@ router.post('/add_cajamenor', validateCajamenor, async (req, res) => {
 
     router.post('/editar_cajamenor/:id',  async (req, res) => {
         const {id} = req.params;
-        const {cja_fecha, cja_Beneficiario, cja_concepto, cja_tipo,cja_valor,cja_estado } = req.body;
-        const nuevaCajamenor ={
-            cja_fecha, 
-            cja_Beneficiario,
-            cja_concepto, 
-            cja_tipo,
-            cja_valor,
-            cja_estado
-        };
-        // const editarUsuario = req.body;
+        // const {cja_fecha, cja_Beneficiario, cja_concepto, cja_tipo,cja_valor,cja_estado } = req.body;
+        // const nuevaCajamenor ={
+        //     cja_fecha, 
+        //     cja_Beneficiario,
+        //     cja_concepto, 
+        //     cja_tipo,
+        //     cja_valor,
+        //     cja_estado
+        // };
+        const nuevaCajamenor = req.body;
         await pool.query('UPDATE cajamenor set ? WHERE CJA_ID = ?', [nuevaCajamenor,id]);
-        //res.json({"message":"Registro Agregado  correctamente"})
-        req.flash('success','Actualizada Correctamente');
-        res.redirect('/cajamenor/listar_cajamenor');
+        res.json({"message":"Registro Agregado  correctamente"})
+        //req.flash('success','Actualizada Correctamente');
+        //res.redirect('/cajamenor/listar_cajamenor');
     });
 
 

@@ -10,21 +10,21 @@ router.get('/add_tour',(req, res) => {
 });
 
 router.post('/add_tour', validateTours, async (req, res) => {
-    const {tou_nombre, tou_tipo, tou_valorneto, tou_valorcomisionable,tou_observaciones,tou_fecha } = req.body;
-    const nuevoTour ={
-        tou_nombre, 
-        tou_tipo, 
-        tou_valorneto, 
-        tou_valorcomisionable,
-        tou_observaciones,
-        tou_fecha
-    };
-    //const nuevoUsuario = req.body;
+    // const {tou_nombre, tou_tipo, tou_valorneto, tou_valorcomisionable,tou_observaciones,tou_fecha } = req.body;
+    // const nuevoTour ={
+    //     tou_nombre, 
+    //     tou_tipo, 
+    //     tou_valorneto, 
+    //     tou_valorcomisionable,
+    //     tou_observaciones,
+    //     tou_fecha
+    // };
+    const nuevoTour = req.body;
     console.log(nuevoTour);
     await pool.query('INSERT INTO tour set ?', [nuevoTour]);
-    //res.json({"message":"Registro Agregado  correctamente"})
-    req.flash('success','Tour Agregado Correctamente');
-    res.redirect('/tours/listar_tours');
+    res.json({"message":"Registro Agregado  correctamente"})
+    //req.flash('success','Tour Agregado Correctamente');
+    //res.redirect('/tours/listar_tours');
 });
 
     router.get('/listar_tours',  async (req, res) => {
@@ -36,9 +36,9 @@ router.post('/add_tour', validateTours, async (req, res) => {
     router.get('/eliminar_tour/:id', async (req, res) => {
         const {id} = req.params;
          await pool.query('DELETE FROM tour WHERE TOU_ID  = ?',[id]);
-        req.flash('success','Tour Eliminado Correctamente');
-        res.redirect('/tours/listar_tours');
-        //res.json({"message":"Registro Eliminado  correctamente"})
+        //req.flash('success','Tour Eliminado Correctamente');
+        //res.redirect('/tours/listar_tours');
+        res.json({"message":"Registro Eliminado  correctamente"})
     });
 
     router.get('/editar_tour/:id',  async (req, res) => {
@@ -50,20 +50,20 @@ router.post('/add_tour', validateTours, async (req, res) => {
 
     router.post('/editar_tour/:id',  async (req, res) => {
         const {id} = req.params;
-        const {tou_nombre, tou_tipo, tou_valorneto, tou_valorcomisionable,tou_observaciones,tou_fecha } = req.body;
-        const nuevoTour ={
-            tou_nombre, 
-            tou_tipo, 
-            tou_valorneto, 
-            tou_valorcomisionable,
-            tou_observaciones,
-            tou_fecha
-        };
-        // const editarUsuario = req.body;
+        // const {tou_nombre, tou_tipo, tou_valorneto, tou_valorcomisionable,tou_observaciones,tou_fecha } = req.body;
+        // const nuevoTour ={
+        //     tou_nombre, 
+        //     tou_tipo, 
+        //     tou_valorneto, 
+        //     tou_valorcomisionable,
+        //     tou_observaciones,
+        //     tou_fecha
+        // };
+        const nuevoTour = req.body;
         await pool.query('UPDATE tour set ? WHERE TOU_ID = ?', [nuevoTour,id]);
-        //res.json({"message":"Registro Agregado  correctamente"})
-        req.flash('success','Tour Actualizado Correctamente');
-        res.redirect('/tours/listar_tours');
+        res.json({"message":"Registro Agregado  correctamente"})
+        //req.flash('success','Tour Actualizado Correctamente');
+        //res.redirect('/tours/listar_tours');
     });
 
 

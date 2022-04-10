@@ -7,4 +7,12 @@ module.exports = {
        database: 'efvyxxt5qnvu542e'
    }
 
+   //local
+//    database: {
+//     host: 'localhost',
+//     user: 'root',
+//     password: '',
+//     database: 'travel'
+//    } 
+
 };

@@ -10,24 +10,24 @@ router.get('/add_reserva',(req, res) => {
 });
 
 router.post('/add_reserva',validatereservas, async (req, res) => {
-    const {res_acom, res_extra, res_abono1, res_abono2,res_abono3,res_observaciones,res_fecha_abono1,res_fecha_abono2,res_fecha_abono3 } = req.body;
-    const nuevaReserva ={
-        res_acom, 
-        res_extra, 
-        res_abono1, 
-        res_abono2,
-        res_abono3,
-        res_observaciones,
-        res_fecha_abono1,
-        res_fecha_abono2,
-        res_fecha_abono3
-    };
-    //const nuevoUsuario = req.body;
+    // const {res_acom, res_extra, res_abono1, res_abono2,res_abono3,res_observaciones,res_fecha_abono1,res_fecha_abono2,res_fecha_abono3 } = req.body;
+    // const nuevaReserva ={
+    //     res_acom, 
+    //     res_extra, 
+    //     res_abono1, 
+    //     res_abono2,
+    //     res_abono3,
+    //     res_observaciones,
+    //     res_fecha_abono1,
+    //     res_fecha_abono2,
+    //     res_fecha_abono3
+    // };
+    const nuevaReserva = req.body;
     console.log(nuevaReserva);
     await pool.query('INSERT INTO reserva set ?', [nuevaReserva]);
-    //res.json({"message":"Registro Agregado  correctamente"})
-    req.flash('success','Reserva Agregada Correctamente');
-    res.redirect('/reservas/listar_reservas');
+    res.json({"message":"Registro Agregado  correctamente"})
+    //req.flash('success','Reserva Agregada Correctamente');
+    //res.redirect('/reservas/listar_reservas');
 });
 
     router.get('/listar_reservas',  async (req, res) => {
@@ -40,9 +40,9 @@ router.post('/add_reserva',validatereservas, async (req, res) => {
     router.get('/eliminar_reserva/:id', async (req, res) => {
         const {id} = req.params;
          await pool.query('DELETE FROM reserva WHERE RES_ID  = ?',[id]);
-        req.flash('success','Reserva Eliminada Correctamente');
-        res.redirect('/reservas/listar_reservas');
-        //res.json({"message":"Registro Eliminado  correctamente"})
+        //req.flash('success','Reserva Eliminada Correctamente');
+        //res.redirect('/reservas/listar_reservas');
+        res.json({"message":"Registro Eliminado  correctamente"})
     });
 
     router.get('/editar_reserva/:id',  async (req, res) => {
@@ -54,23 +54,23 @@ router.post('/add_reserva',validatereservas, async (req, res) => {
 
     router.post('/editar_reserva/:id',  async (req, res) => {
         const {id} = req.params;
-        const {res_acom, res_extra, res_abono1, res_abono2,res_abono3,res_observaciones,res_fecha_abono1,res_fecha_abono2,res_fecha_abono3 } = req.body;
-        const nuevaReserva ={
-            res_acom, 
-            res_extra, 
-            res_abono1, 
-            res_abono2,
-            res_abono3,
-            res_observaciones,
-            res_fecha_abono1,
-            res_fecha_abono2,
-            res_fecha_abono3
-        };
-        // const editarUsuario = req.body;
+        // const {res_acom, res_extra, res_abono1, res_abono2,res_abono3,res_observaciones,res_fecha_abono1,res_fecha_abono2,res_fecha_abono3 } = req.body;
+        // const nuevaReserva ={
+        //     res_acom, 
+        //     res_extra, 
+        //     res_abono1, 
+        //     res_abono2,
+        //     res_abono3,
+        //     res_observaciones,
+        //     res_fecha_abono1,
+        //     res_fecha_abono2,
+        //     res_fecha_abono3
+        // };
+        const nuevaReserva = req.body;
         await pool.query('UPDATE reserva set ? WHERE RES_ID = ?', [nuevaReserva,id]);
-        //res.json({"message":"Registro Agregado  correctamente"})
-        req.flash('success','Reserva Actualizada Correctamente');
-        res.redirect('/reservas/listar_reservas');
+        res.json({"message":"Registro Agregado  correctamente"})
+        //req.flash('success','Reserva Actualizada Correctamente');
+        //res.redirect('/reservas/listar_reservas');
     });
 
 

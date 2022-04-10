@@ -10,18 +10,18 @@ router.get('/add_cuenta',(req, res) => {
 });
 
 router.post('/add_cuenta', validateCuentas, async (req, res) => {
-    const {cta_banco, cta_numerocuenta, cta_nombre } = req.body;
-    const nuevaCuenta ={
-        cta_banco, 
-        cta_numerocuenta, 
-        cta_nombre
-    };
-    //const nuevoUsuario = req.body;
+    // const {cta_banco, cta_numerocuenta, cta_nombre } = req.body;
+    // const nuevaCuenta ={
+    //     cta_banco, 
+    //     cta_numerocuenta, 
+    //     cta_nombre
+    // };
+    const nuevaCuenta = req.body;
     console.log(nuevaCuenta);
     await pool.query('INSERT INTO cuentas set ?', [nuevaCuenta]);
-    //res.json({"message":"Registro Agregado  correctamente"})
-    req.flash('success','Cuenta Agregada Correctamente');
-    res.redirect('/cuentas/listar_cuentas');
+    res.json({"message":"Registro Agregado  correctamente"})
+    //req.flash('success','Cuenta Agregada Correctamente');
+    //res.redirect('/cuentas/listar_cuentas');
 });
 
     router.get('/listar_cuentas',  async (req, res) => {
@@ -33,9 +33,9 @@ router.post('/add_cuenta', validateCuentas, async (req, res) => {
     router.get('/eliminar_cuenta/:id', async (req, res) => {
         const {id} = req.params;
          await pool.query('DELETE FROM cuentas WHERE CTA_ID = ?',[id]);
-        req.flash('success','Cuenta Eliminada Correctamente');
-        res.redirect('/cuentas/listar_cuentas');
-        //res.json({"message":"Registro Eliminado  correctamente"})
+        //req.flash('success','Cuenta Eliminada Correctamente');
+        //res.redirect('/cuentas/listar_cuentas');
+        res.json({"message":"Registro Eliminado  correctamente"})
     });
 
     router.get('/editar_cuenta/:id',  async (req, res) => {
@@ -47,17 +47,17 @@ router.post('/add_cuenta', validateCuentas, async (req, res) => {
 
     router.post('/editar_cuenta/:id',  async (req, res) => {
         const {id} = req.params;
-        const {cta_banco, cta_numerocuenta, cta_nombre } = req.body;
-        const nuevaCuenta ={
-            cta_banco, 
-            cta_numerocuenta, 
-            cta_nombre
-        };
-        // const editarUsuario = req.body;
-        await pool.query('UPDATE cuentas set ? WHERE CTA_ID = ?', [nuevaCuenta,id]);
-        //res.json({"message":"Registro Agregado  correctamente"})
-        req.flash('success','Cuenta Actualizadada Correctamente');
-        res.redirect('/cuentas/listar_cuentas');
+        // const {cta_banco, cta_numerocuenta, cta_nombre } = req.body;
+        // const nuevaCuenta ={
+        //     cta_banco, 
+        //     cta_numerocuenta, 
+        //     cta_nombre
+        // };
+        const editarUsuario = req.body;
+        await pool.query('UPDATE cuentas set ? WHERE CTA_ID = ?', [editarUsuario,id]);
+        res.json({"message":"Registro Agregado  correctamente"})
+        //req.flash('success','Cuenta Actualizadada Correctamente');
+        //res.redirect('/cuentas/listar_cuentas');
     });
 
 

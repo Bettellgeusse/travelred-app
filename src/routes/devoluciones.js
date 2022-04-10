@@ -10,24 +10,24 @@ router.get('/add_devolucion',(req, res) => {
 });
 
 router.post('/add_devolucion',validatedevoluciones, async (req, res) => {
-    const {aho_acom, aho_extra, aho_abono1, aho_abono2, aho_abono3, aho_fecha_abono1, aho_fecha_abono2, aho_fecha_abono3,aho_cancelado } = req.body;
-    const nuevaDevolucion ={
-        aho_acom, 
-        aho_extra, 
-        aho_abono1, 
-        aho_abono2, 
-        aho_abono3, 
-        aho_fecha_abono1, 
-        aho_fecha_abono2, 
-        aho_fecha_abono3,
-        aho_cancelado 
-    };
-    //const nuevoUsuario = req.body;
+    // const {aho_acom, aho_extra, aho_abono1, aho_abono2, aho_abono3, aho_fecha_abono1, aho_fecha_abono2, aho_fecha_abono3,aho_cancelado } = req.body;
+    // const nuevaDevolucion ={
+    //     aho_acom, 
+    //     aho_extra, 
+    //     aho_abono1, 
+    //     aho_abono2, 
+    //     aho_abono3, 
+    //     aho_fecha_abono1, 
+    //     aho_fecha_abono2, 
+    //     aho_fecha_abono3,
+    //     aho_cancelado 
+    // };
+    const nuevaDevolucion = req.body;
     console.log(nuevaDevolucion);
     await pool.query('INSERT INTO devolucion set ?', [nuevaDevolucion]);
-    //res.json({"message":"Registro Agregado  correctamente"})
-    req.flash('success','Devolucion Agregado Correctamente');
-    res.redirect('/devoluciones/listar_devolucion');
+    res.json({"message":"Registro Agregado  correctamente"})
+    //req.flash('success','Devolucion Agregado Correctamente');
+    //res.redirect('/devoluciones/listar_devolucion');
 });
 
     router.get('/listar_devolucion',  async (req, res) => {
@@ -39,9 +39,9 @@ router.post('/add_devolucion',validatedevoluciones, async (req, res) => {
     router.get('/eliminar_devolucion/:id', async (req, res) => {
         const {id} = req.params;
          await pool.query('DELETE FROM devolucion WHERE DEV_ID = ?',[id]);
-        req.flash('success','Devolucion Eliminado Correctamente');
-        res.redirect('/devoluciones/listar_devolucion');
-        //res.json({"message":"Registro Eliminado  correctamente"})
+        //req.flash('success','Devolucion Eliminado Correctamente');
+        //res.redirect('/devoluciones/listar_devolucion');
+        res.json({"message":"Registro Eliminado  correctamente"})
     });
 
     router.get('/editar_devolucion/:id',  async (req, res) => {
@@ -53,23 +53,23 @@ router.post('/add_devolucion',validatedevoluciones, async (req, res) => {
 
     router.post('/editar_devolucion/:id',  async (req, res) => {
         const {id} = req.params;
-        const {aho_acom, aho_extra, aho_abono1, aho_abono2, aho_abono3, aho_fecha_abono1, aho_fecha_abono2, aho_fecha_abono3,aho_cancelado } = req.body;
-        const nuevaDevolucion ={
-            aho_acom, 
-            aho_extra, 
-            aho_abono1, 
-            aho_abono2, 
-            aho_abono3, 
-            aho_fecha_abono1, 
-            aho_fecha_abono2, 
-            aho_fecha_abono3,
-            aho_cancelado 
-        };
-        // const editarUsuario = req.body;
+        // const {aho_acom, aho_extra, aho_abono1, aho_abono2, aho_abono3, aho_fecha_abono1, aho_fecha_abono2, aho_fecha_abono3,aho_cancelado } = req.body;
+        // const nuevaDevolucion ={
+        //     aho_acom, 
+        //     aho_extra, 
+        //     aho_abono1, 
+        //     aho_abono2, 
+        //     aho_abono3, 
+        //     aho_fecha_abono1, 
+        //     aho_fecha_abono2, 
+        //     aho_fecha_abono3,
+        //     aho_cancelado 
+        // };
+        const nuevaDevolucion = req.body;
         await pool.query('UPDATE devolucion set ? WHERE DEV_ID = ?', [nuevaDevolucion,id]);
-        //res.json({"message":"Registro Agregado  correctamente"})
-        req.flash('success','Devolucion Actualizado Correctamente');
-        res.redirect('/devoluciones/listar_devolucion');
+        res.json({"message":"Registro Agregado  correctamente"})
+        //req.flash('success','Devolucion Actualizado Correctamente');
+        //res.redirect('/devoluciones/listar_devolucion');
     });
 
 
