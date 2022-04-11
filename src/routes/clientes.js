@@ -6,6 +6,7 @@ const router = express.Router();
 
 const pool = require('../database');
 const { isLoggedIn } = require('../lib/auth');
+const { json } = require('express/lib/response');
 
 router.get('/add', (req, res) => {
        res.render('clientes/add');
@@ -50,6 +51,7 @@ router.post('/add', validateCliente, async (req, res) => {
         const {id} = req.params;
         const editarcliente = await pool.query('SELECT * FROM cliente WHERE CLN_ID = ?',[id]);
         res.render('clientes/editar_cliente',{editarcliente:editarcliente[0]} );
+        return res.json(editarcliente[0])
         
     });
 
