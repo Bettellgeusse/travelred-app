@@ -39,6 +39,15 @@ router.post('/add', validateCliente, async (req, res) => {
         return res.json(vercliente);
     });
 
+    router.get('/listar_cliente/:id',  async (req, res) => {
+        const {id} = req.params;
+        const listarcliente = await pool.query('SELECT * FROM cliente WHERE CLN_ID = ?',[id]);
+        console.log(listarcliente[0]);
+        return res.json(listarcliente[0])
+       // res.render('clientes/editar_cliente',{editarcliente:editarcliente[0]} );
+    });
+
+
     router.get('/eliminar_cliente/:id', async (req, res) => {
         const {id} = req.params;
          await pool.query('DELETE FROM cliente WHERE CLN_ID = ?',[id]);
@@ -50,9 +59,9 @@ router.post('/add', validateCliente, async (req, res) => {
     router.get('/editar_cliente/:id',  async (req, res) => {
         const {id} = req.params;
         const editarcliente = await pool.query('SELECT * FROM cliente WHERE CLN_ID = ?',[id]);
-        res.render('clientes/editar_cliente',{editarcliente:editarcliente[0]} );
+        console.log(editarcliente[0]);
         return res.json(editarcliente[0])
-        
+       // res.render('clientes/editar_cliente',{editarcliente:editarcliente[0]} );
     });
 
     router.post('/editar_cliente/:id',  async (req, res) => {
