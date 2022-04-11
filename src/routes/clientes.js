@@ -39,7 +39,7 @@ router.post('/add', validateCliente, async (req, res) => {
         return res.json(vercliente);
     });
 
-    router.get('/listar_cliente/:id',  async (req, res) => {
+    router.get('/lista_clientes/:id',  async (req, res) => {
         const {id} = req.params;
         const listarcliente = await pool.query('SELECT * FROM cliente WHERE CLN_ID = ?',[id]);
         console.log(listarcliente[0]);
