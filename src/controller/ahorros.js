@@ -31,6 +31,13 @@ const getAhorro = async (req, res) => {
     return res.json(verahorro);
 }
 
+const getIdAhorro = async (req, res) => {
+    const {id} = req.params;
+    const listarAhorro = await pool.query('SELECT * FROM ahorro WHERE DEV_ID2 = ?',[id]);
+    console.log(listarAhorro[0]);
+    return res.json(listarAhorro[0])
+}
+
 const deleteAhorro = async (req, res) => {
     const {id} = req.params;
     await pool.query('DELETE FROM ahorro WHERE DEV_ID2 = ?',[id]);
@@ -66,4 +73,4 @@ const putahorro = async (req, res) => {
     //res.redirect('/ahorro/lista_ahorros');
 }
 
-module.exports = { postAhorro, getAhorro, deleteAhorro, getEditAhorro, putahorro}
+module.exports = { postAhorro, getAhorro, deleteAhorro, getEditAhorro, putahorro, getIdAhorro}

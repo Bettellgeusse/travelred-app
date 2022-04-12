@@ -5,46 +5,22 @@ const { validateResult } = require('../lib/validateHelper')
 const validateCliente = [
     body('cln_nombre')
     .exists()
-    .withMessage('Error, nombre NO existe')
-    .not()
-    .isEmpty()
-    .withMessage('Error, Escriba el Nombre'),
+    .withMessage('Error, NO existe'),
    body('cln_apellido')
-    .exists()
-    .withMessage('Error, Apellido NO existe')
-    .not()
-    .isEmpty()
-    .withMessage('Error, Escriba el Apellido'),
+   .exists()
+   .withMessage('Error, NO existe'),
    body('cln_edad')
-    .exists()
-    .withMessage('Error, Edad NO existe')
-    .not()
-    .isEmpty()
-    .withMessage('Error, escriba la Edad')
-    .isNumeric()
-    .withMessage('Error, escriba un numero'),
+   .exists()
+   .withMessage('Error, NO existe'),
    body('cln_celular')
    .exists()
-   .withMessage('Error, Celular NO existe')
-   .not()
-   .isEmpty()
-   .withMessage('Error, escriba un Numero Celular')
-   .isNumeric()
-   .withMessage('Error, escriba un numero'),
+   .withMessage('Error, NO existe'),
    body('cln_correo')
    .exists()
-   .withMessage('Error, Correo NO existe')
-   .not()
-   .isEmpty()
-   .withMessage('Error, digite un Correo ')
-   .isEmail()
-   .withMessage('Error, escriba una direccion de correo valida '),
+   .withMessage('Error, NO existe'),
    body('cln_cedula')
    .exists()
-   .withMessage('Error, Cedula NO existe')
-   .not()
-   .isEmpty()
-   .withMessage('Error, digigite su Numero de cedula'),
+   .withMessage('Error, NO existe'),
    (req, res, next) => {
     validateResult(req, res, next)
 }

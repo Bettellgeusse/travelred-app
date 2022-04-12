@@ -5,7 +5,7 @@ const { validateahorro } = require('../validators/ahorro');
 const pool = require('../database');
 const { isLoggedIn } = require('../lib/auth');
 
-const {postAhorro, getAhorro, deleteAhorro, getEditAhorro, putahorro} = require('../controller/ahorros')
+const {postAhorro, getAhorro, deleteAhorro, getEditAhorro, putahorro, getIdAhorro} = require('../controller/ahorros')
 
 router.get('/add_ahorro',(req, res) => {
        res.render('ahorro/add_ahorro');
@@ -14,6 +14,8 @@ router.get('/add_ahorro',(req, res) => {
 router.post('/add_ahorro', validateahorro,  postAhorro );
 
 router.get('/lista_ahorros',  getAhorro);
+
+router.get('/lista_ahorros/:id',  getIdAhorro);
 
 router.get('/eliminar_ahorro/:id', deleteAhorro);
 

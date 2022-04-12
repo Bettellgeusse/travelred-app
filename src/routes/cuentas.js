@@ -4,61 +4,23 @@ const router = express.Router();
 const { validateCuentas } = require('../validators/cuentas');
 const pool = require('../database');
 const { isLoggedIn } = require('../lib/auth');
+const {postCuentas, getCuentas, getIdCuentas, deleteCuentas, getEditarCuentas, putCuentas} =require('../controller/cuentas');
 
 router.get('/add_cuenta',(req, res) => {
        res.render('cuentas/add_cuenta');
 });
 
-router.post('/add_cuenta', validateCuentas, async (req, res) => {
-    // const {cta_banco, cta_numerocuenta, cta_nombre } = req.body;
-    // const nuevaCuenta ={
-    //     cta_banco, 
-    //     cta_numerocuenta, 
-    //     cta_nombre
-    // };
-    const nuevaCuenta = req.body;
-    console.log(nuevaCuenta);
-    await pool.query('INSERT INTO cuentas set ?', [nuevaCuenta]);
-    res.json({"message":"Registro Agregado  correctamente"})
-    //req.flash('success','Cuenta Agregada Correctamente');
-    //res.redirect('/cuentas/listar_cuentas');
-});
+router.post('/add_cuenta', validateCuentas, postCuentas);
 
-    router.get('/listar_cuentas',  async (req, res) => {
-        const vercuenta = await pool.query('SELECT * FROM cuentas');
-        //res.render('cuentas/listar_cuentas', {vercuenta:vercuenta});
-        return res.json(vercuenta);
-    });
+router.get('/listar_cuentas', getCuentas );
 
-    router.get('/eliminar_cuenta/:id', async (req, res) => {
-        const {id} = req.params;
-         await pool.query('DELETE FROM cuentas WHERE CTA_ID = ?',[id]);
-        //req.flash('success','Cuenta Eliminada Correctamente');
-        //res.redirect('/cuentas/listar_cuentas');
-        res.json({"message":"Registro Eliminado  correctamente"})
-    });
+router.get( '/listar_cuentas/:id', getIdCuentas)
 
-    router.get('/editar_cuenta/:id',  async (req, res) => {
-        const {id} = req.params;
-        const editarCuenta = await pool.query('SELECT * FROM cuentas WHERE CTA_ID = ?',[id]);
-        res.render('cuentas/editar_cuenta',{editarCuenta:editarCuenta[0]} );
-        
-    });
+router.get('/eliminar_cuenta/:id', deleteCuentas);
 
-    router.post('/editar_cuenta/:id',  async (req, res) => {
-        const {id} = req.params;
-        // const {cta_banco, cta_numerocuenta, cta_nombre } = req.body;
-        // const nuevaCuenta ={
-        //     cta_banco, 
-        //     cta_numerocuenta, 
-        //     cta_nombre
-        // };
-        const editarUsuario = req.body;
-        await pool.query('UPDATE cuentas set ? WHERE CTA_ID = ?', [editarUsuario,id]);
-        res.json({"message":"Registro Agregado  correctamente"})
-        //req.flash('success','Cuenta Actualizadada Correctamente');
-        //res.redirect('/cuentas/listar_cuentas');
-    });
+router.get('/editar_cuenta/:id',  getEditarCuentas);
+
+router.post('/editar_cuenta/:id',  putCuentas);
 
 
 module.exports = router;
