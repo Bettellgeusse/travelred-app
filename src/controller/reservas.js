@@ -27,7 +27,8 @@ const postReservas = async (req, res) => {
 
 const getReservas = async (req, res) => {
     //const verReserva = await pool.query('SELECT * FROM reserva');
-    const verReserva = await pool.query('SELECT CLN_NOMBRE, CLN_CEDULA, 	RES_ACOM, RES_EXTRA, RES_ABONO1,RES_ABONO2,RES_ABONO3,RES_OBSERVACIONES,RES_FECHA_ABONO1,RES_FECHA_ABONO2,RES_FECHA_ABONO3 From cliente INNER JOIN reserva ON reserva.CLN_ID = cliente.CLN_ID');
+    //const verReserva = await pool.query('SELECT CLN_NOMBRE, CLN_CEDULA, 	RES_ACOM, RES_EXTRA, RES_ABONO1,RES_ABONO2,RES_ABONO3,RES_OBSERVACIONES,RES_FECHA_ABONO1,RES_FECHA_ABONO2,RES_FECHA_ABONO3 From cliente INNER JOIN reserva ON reserva.CLN_ID = cliente.CLN_ID');
+    const verReserva = await pool.query('SELECT cliente.CLN_NOMBRE, cliente.CLN_CEDULA, cliente.CLN_CELULAR, tour.TOU_NOMBRE, tour.TOU_FECHA, RES_ACOM, RES_EXTRA, RES_ABONO1,RES_ABONO2,RES_ABONO3,RES_OBSERVACIONES,RES_FECHA_ABONO1,RES_FECHA_ABONO2,RES_FECHA_ABONO3 From cliente INNER JOIN reserva ON reserva.CLN_ID = cliente.CLN_ID INNER JOIN tour ON reserva.TOU_ID = tour.TOU_ID;');
     //res.render('reservas/listar_reservas', {verReserva:verReserva});
     return res.json(verReserva);
 }
