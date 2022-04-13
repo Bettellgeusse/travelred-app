@@ -29,7 +29,7 @@ const postReservas = async (req, res) => {
 const getReservas = async (req, res) => {
     //const verReserva = await pool.query('SELECT * FROM reserva');
     //const verReserva = await pool.query('SELECT CLN_NOMBRE, CLN_CEDULA, 	RES_ACOM, RES_EXTRA, RES_ABONO1,RES_ABONO2,RES_ABONO3,RES_OBSERVACIONES,RES_FECHA_ABONO1,RES_FECHA_ABONO2,RES_FECHA_ABONO3 From cliente INNER JOIN reserva ON reserva.CLN_ID = cliente.CLN_ID');
-    const verReserva = await pool.query('SELECT cliente.CLN_NOMBRE, cliente.CLN_CEDULA, cliente.CLN_CELULAR, tour.TOU_NOMBRE, tour.TOU_FECHA, RES_ACOM, RES_EXTRA, RES_ABONO1,RES_ABONO2,RES_ABONO3,RES_OBSERVACIONES,RES_FECHA_ABONO1,RES_FECHA_ABONO2,RES_FECHA_ABONO3 From cliente INNER JOIN reserva ON reserva.CLN_ID = cliente.CLN_ID INNER JOIN tour ON reserva.TOU_ID = tour.TOU_ID;');
+    const verReserva = await pool.query('SELECT cliente.CLN_NOMBRE, cliente.CLN_CEDULA, cliente.CLN_CELULAR, tour.TOU_NOMBRE, tour.TOU_FECHA, cuentas.CTA_NOMBRE, cuentas.CTA_BANCO, cuentas.CTA_NUMEROCUENTA,  RES_ACOM, RES_EXTRA, RES_ABONO1,RES_ABONO2,RES_ABONO3,RES_OBSERVACIONES,RES_FECHA_ABONO1,RES_FECHA_ABONO2,RES_FECHA_ABONO3 From cliente INNER JOIN reserva ON reserva.CLN_ID = cliente.CLN_ID INNER JOIN tour ON reserva.TOU_ID = tour.TOU_ID INNER JOIN cuentas ON reserva.CTA_ID = cuentas.CTA_ID;');
     //res.render('reservas/listar_reservas', {verReserva:verReserva});
     return res.json(verReserva);
 }
@@ -60,7 +60,7 @@ const putReservas = async (req, res) => {
     const {id} = req.params;
     // const {res_cuen,res_acom, res_extra, res_abono1, res_abono2,res_abono3,res_observaciones,res_fecha_abono1,res_fecha_abono2,res_fecha_abono3 } = req.body;
     // const nuevaReserva ={
-    //     res_cuen,
+    //     res_cuen
     //     res_acom, 
     //     res_extra, 
     //     res_abono1, 
