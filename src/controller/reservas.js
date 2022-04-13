@@ -5,8 +5,9 @@ const router = express.Router();
 const pool = require('../database');
 
 const postReservas = async (req, res) => {
-    // const {res_acom, res_extra, res_abono1, res_abono2,res_abono3,res_observaciones,res_fecha_abono1,res_fecha_abono2,res_fecha_abono3 } = req.body;
+    // const {res_cuen,res_acom, res_extra, res_abono1, res_abono2,res_abono3,res_observaciones,res_fecha_abono1,res_fecha_abono2,res_fecha_abono3 } = req.body;
     // const nuevaReserva ={
+    //     res_cuen,
     //     res_acom, 
     //     res_extra, 
     //     res_abono1, 
@@ -57,8 +58,9 @@ const getEditReservas = async (req, res) => {
 
 const putReservas = async (req, res) => {
     const {id} = req.params;
-    // const {res_acom, res_extra, res_abono1, res_abono2,res_abono3,res_observaciones,res_fecha_abono1,res_fecha_abono2,res_fecha_abono3 } = req.body;
+    // const {res_cuen,res_acom, res_extra, res_abono1, res_abono2,res_abono3,res_observaciones,res_fecha_abono1,res_fecha_abono2,res_fecha_abono3 } = req.body;
     // const nuevaReserva ={
+    //     res_cuen,
     //     res_acom, 
     //     res_extra, 
     //     res_abono1, 

@@ -2,6 +2,9 @@ const { body } = require("express-validator");
 const { validateResult } = require("../lib/validateHelper");
 
 const validatereservas = [
+  body("res_cuen")
+  .exists()
+  .withMessage("Error, NO existe"),
   body("res_acom")
   .exists()
   .withMessage("Error, NO existe"),
