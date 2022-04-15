@@ -34,10 +34,8 @@ app.use(session({
     secret: 'administrador',
     resave: false,
     saveUninitialized: true,
-    store: new MySQLStore(database),
-    cookie: {
-        secure: true //add this line
-      }
+    cookie: { secure: true },
+    store: new MySQLStore(database)
 }));
 app.use(flash());
 app.use(morgan('dev'));
@@ -76,9 +74,4 @@ app.listen(app.get('port'),  () => {
     console.log('Serve on port', app.get('port'));
 });
 
-if (app.get("env") === "production") {
-    // trust first proxy for Heroku production deployment
-    app.set("trust proxy", 1);
-    // serve secure cookies, requires https
-    session.cookie.secure = true;
-  }
+
