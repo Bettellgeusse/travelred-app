@@ -80,5 +80,5 @@ if (app.get("env") === "production") {
     // trust first proxy for Heroku production deployment
     app.set("trust proxy", 1);
     // serve secure cookies, requires https
-    sessionOptions.cookie.secure = true;
+    session.cookie.secure = true;
   }
