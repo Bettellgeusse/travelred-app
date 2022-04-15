@@ -34,7 +34,10 @@ app.use(session({
     secret: 'administrador',
     resave: false,
     saveUninitialized: false,
-    store: new MySQLStore(database)
+    store: new MySQLStore(database),
+    cookie: {
+        sameSite: "none", //add this line
+      }
 }));
 app.use(flash());
 app.use(morgan('dev'));
@@ -49,7 +52,7 @@ app.use((req, res, next)  => {
     app.locals.success = req.flash('success');
     app.locals.success = req.flash('message');
     app.locals.user = req.user;
-    next()
+    next();
 });
 //Routes 
 app.use(require('./routes'));
