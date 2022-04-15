@@ -30,6 +30,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 //Widdlewares
+app.set('trust proxy', 1)
 app.use(session({
     secret: 'administrador',
     resave: false,
