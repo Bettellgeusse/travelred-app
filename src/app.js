@@ -33,10 +33,10 @@ app.use(express.json());
 app.use(session({
     secret: 'administrador',
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     store: new MySQLStore(database),
     cookie: {
-        sameSite: "none", //add this line
+        secure: true //add this line
       }
 }));
 app.use(flash());
