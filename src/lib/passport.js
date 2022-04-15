@@ -15,6 +15,7 @@ passport.use('local.signin', new LocalStrategy({
    if(rows.length > 0 ){
      const user = rows[0];
      const validPassword = await helpers.matchPassword(rol_password, user.ROL_PASSWORD);
+     console.log('validado')
      console.log(validPassword);
 
      if(validPassword){
@@ -59,7 +60,7 @@ passport.use('local.signup', new LocalStrategy({
 }));
 
  passport.serializeUser((user, done)=> {
-  // console.log('por aca estoy ');
+   console.log('por aca estoy ');
    done(null, user.ROL_ID);
    //console.log(user.rol_nombre);
    //console.log(user.rol_id);
