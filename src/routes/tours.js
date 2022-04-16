@@ -10,7 +10,7 @@ router.get('/add_tour',(req, res) => {
        res.render('tours/add_tour');
 });
 
-router.post('/add_tour', validateTours, postTours);
+router.post('/add_tour',  postTours);
 
 router.get('/listar_tours',  getTours);
 
