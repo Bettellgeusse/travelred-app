@@ -30,7 +30,7 @@ const getTours = async (req, res) => {
 
 const getIdTours = async (req, res) => {
     const {id} = req.params;
-    const listarTours = await pool.query('SELECT * FROM cuentas WHERE TOU_ID = ?',[id]);
+    const listarTours = await pool.query('SELECT * FROM tour WHERE TOU_ID = ?',[id]);
     console.log(listarTours[0]);
     return res.json(listarTours[0])
 }
