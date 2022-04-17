@@ -14,7 +14,7 @@ router.get('/add', (req, res) => {
 });
 
 //Agregar cliente 
-router.post('/add', validateCliente, postCliente);
+router.post('/add',  postCliente);
 
 //Listar clientes 
 router.get('/lista_clientes',  getCliente);

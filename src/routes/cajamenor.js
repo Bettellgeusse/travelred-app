@@ -10,7 +10,7 @@ router.get('/add_cajamenor',(req, res) => {
        res.render('cajamenor/add_cajamenor');
 });
 
-router.post('/add_cajamenor', validateCajamenor, postCajaMenor );
+router.post('/add_cajamenor',  postCajaMenor );
 
 router.get('/listar_cajamenor',  getCajaMenor);
 

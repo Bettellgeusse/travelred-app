@@ -11,7 +11,7 @@ router.get('/add_cajamayor',(req, res) => {
        res.render('cajamayor/add_cajamayor');
 });
 
-router.post('/add_cajamayor', validateCajamayor, posCajaMayor );
+router.post('/add_cajamayor',  posCajaMayor );
 
 router.get('/listar_cajamayor', getCajaMayor );
 

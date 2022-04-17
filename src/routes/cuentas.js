@@ -10,7 +10,7 @@ router.get('/add_cuenta',(req, res) => {
        res.render('cuentas/add_cuenta');
 });
 
-router.post('/add_cuenta', validateCuentas, postCuentas);
+router.post('/add_cuenta',  postCuentas);
 
 router.get('/listar_cuentas', getCuentas );
 

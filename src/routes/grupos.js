@@ -10,7 +10,7 @@ router.get('/add_grupo',(req, res) => {
        res.render('grupos/add_grupo');
 });
 
-router.post('/add_grupo', validategrupos, poolGrupos);
+router.post('/add_grupo',  poolGrupos);
 
 router.get('/listar_grupos',  getGrupos);
 

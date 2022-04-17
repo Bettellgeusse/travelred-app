@@ -10,7 +10,7 @@ router.get('/add_devolucion',(req, res) => {
        res.render('devoluciones/add_devolucion');
 });
 
-router.post('/add_devolucion',validatedevoluciones, postDevoluciones);
+router.post('/add_devolucion', postDevoluciones);
 
 router.get('/listar_devolucion',  getDevoluciones);
 

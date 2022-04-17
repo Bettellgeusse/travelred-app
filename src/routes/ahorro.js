@@ -11,7 +11,7 @@ router.get('/add_ahorro',(req, res) => {
        res.render('ahorro/add_ahorro');
 });
 
-router.post('/add_ahorro', validateahorro,  postAhorro );
+router.post('/add_ahorro',  postAhorro );
 
 router.get('/lista_ahorros',  getAhorro);
 

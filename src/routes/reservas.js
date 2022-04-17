@@ -10,7 +10,7 @@ router.get('/add_reserva',(req, res) => {
        res.render('reservas/add_reserva');
 });
 
-router.post('/add_reserva',validatereservas, postReservas);
+router.post('/add_reserva', postReservas);
 
 router.get('/listar_reservas', getReservas );
 
