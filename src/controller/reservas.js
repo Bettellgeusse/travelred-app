@@ -37,7 +37,7 @@ const getReservas = async (req, res) => {
 
 const getIdReservas = async (req, res) => {
     const {id} = req.params;
-    const listarReserva = await pool.query('SELECT * FROM reserva WHERE RES_ID = ?',[id]);
+    const listarReserva = await pool.query('SELECT r.RES_ID, r.RES_ACOM,r.RES_EXTRA,r.RES_ABONO1,r.RES_ABONO2,r.RES_ABONO3,r.RES_OBSERVACIONES,r.RES_FECHA_ABONO1,r.RES_FECHA_ABONO2,r.RES_FECHA_ABONO3,r.RES_CUEN_ABONO1,cue.CTA_NOMBRE AS CTA_NOMBRE1,r.RES_CUEN_ABONO2,cue2.CTA_NOMBRE AS CTA_NOMBRE2,r.RES_CUEN_ABONO3,cue3.CTA_NOMBRE AS CTA_NOMBRE3,c.CLN_NOMBRE,c.CLN_CEDULA,c.CLN_CELULAR,t.TOU_NOMBRE,t.TOU_FECHA FROM reserva AS r INNER JOIN cliente AS c ON r.CLN_ID = c.CLN_ID INNER JOIN tour AS t ON r.TOU_ID = t.TOU_ID INNER JOIN cuentas AS cue ON r.RES_CUEN_ABONO1 = cue.CTA_ID INNER JOIN cuentas AS cue2 ON r.RES_CUEN_ABONO2 = cue2.CTA_ID INNER JOIN cuentas AS cue3 ON r.RES_CUEN_ABONO3 = cue3.CTA_ID WHERE RES_ID = ?',[id]);
     console.log(listarReserva[0]);
     return res.json(listarReserva[0])
 }
