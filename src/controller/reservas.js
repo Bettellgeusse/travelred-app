@@ -37,7 +37,7 @@ const getReservas = async (req, res) => {
 
 const getIdReservas = async (req, res) => {
     const {id} = req.params;
-    const listarReserva = await pool.query('SELECT * FROM cuentas WHERE RES_ID = ?',[id]);
+    const listarReserva = await pool.query('SELECT * FROM reserva WHERE RES_ID = ?',[id]);
     console.log(listarReserva[0]);
     return res.json(listarReserva[0])
 }
