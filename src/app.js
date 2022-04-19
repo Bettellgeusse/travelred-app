@@ -46,12 +46,6 @@ app.use(session({
 }));
 
 
-if (app.get("env") === "production") {
-    // Serve secure cookies, requires HTTPS
-    app.set('trust proxy', 1)
-    session.cookie.secure = true;
-  }
-  
 app.use(flash());
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
