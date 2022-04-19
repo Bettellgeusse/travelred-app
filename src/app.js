@@ -7,6 +7,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session');
 const passport = require('passport');
+const Auth0Strategy = require("passport-auth0");
 
 const { database } = require('./keys');
 
@@ -33,6 +34,7 @@ app.use(express.json());
 //app.set('trust proxy', 1);
 app.use(session({
     secret: 'administrador',
+    cookie: {},
     resave: false,
     saveUninitialized: false,
     // cookie: { 
