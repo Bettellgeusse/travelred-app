@@ -43,6 +43,11 @@ app.use(session({
     // },
     store: new MySQLStore(database)
 }));
+
+if (app.get("env") === "production") {
+    // Serve secure cookies, requires HTTPS
+    session.cookie.secure = true;
+  }
 app.use(flash());
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
