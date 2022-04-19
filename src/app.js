@@ -32,11 +32,12 @@ app.use(express.json());
 
 //Widdlewares
 //app.set('trust proxy', 1);
+app.set('trust proxy', 1) // trust first proxy
 app.use(session({
     secret: 'administrador',
-    cookie: {},
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
     // cookie: { 
     //     sameSite: "none",
     //     secure: true 
@@ -46,6 +47,7 @@ app.use(session({
 
 if (app.get("env") === "production") {
     // Serve secure cookies, requires HTTPS
+    app.set('trust proxy', 1)
     session.cookie.secure = true;
   }
 app.use(flash());
