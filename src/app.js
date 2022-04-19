@@ -31,17 +31,16 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 //Widdlewares
-//app.set('trust proxy', 1);
-app.set('trust proxy', 1) // trust first proxy
+
+//app.set('trust proxy', 1) // trust first proxy
 app.use(session({
     secret: 'administrador',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true },
-    // cookie: { 
-    //     sameSite: "none",
-    //     secure: true 
-    // },
+    cookie: { 
+        sameSite: "none",
+        secure: true 
+    },
     store: new MySQLStore(database)
 }));
 
