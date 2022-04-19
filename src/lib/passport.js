@@ -63,7 +63,7 @@ passport.use('local.signup', new LocalStrategy({
    console.log('por aca estoy ');
    done(null, user.ROL_ID);
    //console.log(user.rol_nombre);
-   //console.log(user.rol_id);
+   console.log(user.ROL_ID);
 });
 
 passport.deserializeUser(async (ROL_ID, done)=> {
