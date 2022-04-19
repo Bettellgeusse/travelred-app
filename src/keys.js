@@ -9,11 +9,11 @@ module.exports = {
 
    //local
    
-   // database: {
-   //  host: 'localhost',
-   //  user: 'root',
-   //  password: '',
-   //  database: 'travel'
-   // } 
+//    database: {
+//     host: 'localhost',
+//     user: 'root',
+//     password: '',
+//     database: 'travel'
+//    } 
 
 };
