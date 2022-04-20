@@ -27,7 +27,7 @@ const getGrupos = async (req, res) => {
 
 const getIdGrupos = async (req, res) => {
     const {id} = req.params;
-    const listarGrupos = await pool.query('SELECT g.GRP_ID,g.GRP_VALORTOTAL,g.GRP_VALORSALDO,g.GRP_OBSERVACION,g.CLN_ID,c.CLN_NOMBRE,c.CLN_CEDULA,c.CLN_CELULAR FROM grupo AS g INNER JOIN cliente AS c ON g.CLN_ID = c.CLN_ID; WHERE GRP_ID = ?',[id]);
+    const listarGrupos = await pool.query('SELECT g.GRP_ID,g.GRP_VALORTOTAL,g.GRP_VALORSALDO,g.GRP_OBSERVACION,g.CLN_ID,c.CLN_NOMBRE,c.CLN_CEDULA,c.CLN_CELULAR FROM grupo AS g INNER JOIN cliente AS c ON g.CLN_ID = c.CLN_ID WHERE GRP_ID = ?',[id]);
     console.log(listarGrupos[0]);
     return res.json(listarGrupos[0])
 }
