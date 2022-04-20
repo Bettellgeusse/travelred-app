@@ -16,6 +16,7 @@ const { database } = require('./keys');
 
 //inicializar 
 const app = express();
+app.set('trust proxy', true) // trust first proxy
 require('./lib/passport');
 
 //Configuraciones
@@ -36,13 +37,12 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
-app.set('trust proxy', 1) // trust first proxy
+
 app.use(session({
     secret: 'administrador',
     resave: true,
     saveUninitialized: true,
     cookie: { 
-        sameSite: "none",
         secure: true 
     },
     store: new MySQLStore(database)
