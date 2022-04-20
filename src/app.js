@@ -16,7 +16,7 @@ const { database } = require('./keys');
 
 //inicializar 
 const app = express();
-app.set('trust proxy', 1) // trust first proxy
+//app.set('trust proxy', 1) // trust first proxy
 require('./lib/passport');
 
 //Configuraciones
@@ -44,7 +44,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: {
      //   sameSite: "none",
-        secure: true,
+        secure: false,
      //   maxAge: 1000 * 60 * 60 * 24 * 7, // One Week
       },
     store: new MySQLStore(database)
