@@ -40,8 +40,8 @@ app.use(express.json());
 
 app.use(session({
     secret: 'administrador',
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
     cookie: {
         sameSite: "none",
         secure: false,
