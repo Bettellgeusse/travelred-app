@@ -1,12 +1,14 @@
 const express = require('express');
 const morgan = require('morgan');
+const path = require('path');
 const exphbs = require('express-handlebars');
 const { engine } = require('express-handlebars');
-const path = require('path');
-const flash = require('connect-flash');
 const session = require('express-session');
-const MySQLStore = require('express-mysql-session');
+const validator = require('express-validator');
 const passport = require('passport');
+const flash = require('connect-flash');
+const MySQLStore = require('express-mysql-session')(session);
+
 const Auth0Strategy = require("passport-auth0");
 
 const { database } = require('./keys');
@@ -31,7 +33,9 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 //Widdlewares
-
+app.use(morgan('dev'));
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
 //app.set('trust proxy', 1) // trust first proxy
 app.use(session({
     secret: 'administrador',
@@ -43,23 +47,21 @@ app.use(session({
     },
     store: new MySQLStore(database)
 }));
-
-
 app.use(flash());
-app.use(morgan('dev'));
-app.use(express.urlencoded({extended: false}));
-app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
 
+
 //Global Variables
 app.use((req, res, next)  => {
+    app.locals.message = req.flash('message');
     app.locals.success = req.flash('success');
-    app.locals.success = req.flash('message');
     app.locals.user = req.user;
     next();
 });
+
+
 //Routes 
 app.use(require('./routes'));
 app.use(require('./routes/authentication'));
