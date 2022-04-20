@@ -42,9 +42,11 @@ app.use(session({
     secret: 'administrador',
     resave: true,
     saveUninitialized: true,
-    cookie: { 
-        secure: true 
-    },
+    cookie: {
+        sameSite: "none",
+        secure: true,
+        maxAge: 1000 * 60 * 60 * 24 * 7, // One Week
+      },
     store: new MySQLStore(database)
 }));
 app.use(flash());
