@@ -7,6 +7,18 @@ module.exports = {
        database: 'efvyxxt5qnvu542e'
    }
 
+
+// Dream
+
+// database: {
+//    host: 'apptravel.api.travelred.com.co',
+//    user: 'travelredapi',
+//    password: 'W7KNHFiGKnLPyj8',
+//    database: 'apitravel'
+//   } 
+
+
+
    //local
    
    // database: {
@@ -15,5 +27,7 @@ module.exports = {
    //  password: '',
    //  database: 'travel'
    // } 
+
+
 
 };
