@@ -2,9 +2,25 @@ const express = require('express');
 const router = express.Router();
 const { isLoggedIn } = require('../lib/auth');
 
-router.get('/', isLoggedIn, (req, res) => {
+const authController = require('../controller/auth')
+
+
+router.get('/',  (req, res) => {
    res.send('Hola desde Travelred');
 });
+
+
+// router.get('/', (req,res) =>{
+//    res.render('index')
+// })
+
+router.get('/login',(req,res) =>{
+   res.render('login')
+})
+
+router.get('/register',(req,res) =>{
+   res.render('register')
+})
 
 router.get('/ahorro',  (req, res) => {
    res.render('ahorro/add_ahorro');
@@ -37,5 +53,10 @@ router.get('/cajamenor', (req, res) => {
 router.get('/devoluciones', (req, res) => {
    res.render('devoluciones/add_devolucion');
 });
+
+//rutas del controlador
+router.post('/register', authController.register)
+router.post('/login', authController.login)
+router.get('/logout', authController.logout)
 
 module.exports = router;
