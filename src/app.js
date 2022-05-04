@@ -1,4 +1,6 @@
 const express = require('express');
+const dotenv = require("dotenv");
+const cookieParser = require("cookie-parser");
 const morgan = require('morgan');
 const path = require('path');
 const exphbs = require('express-handlebars');
@@ -29,9 +31,17 @@ app.engine('.hbs', engine({
     extname: '.hbs',
     helpers: require('./lib/handlebars')
 }));
+//seteamos la carpeta public   par archivos estaticos 
+app.use(express.static('public'))
+
 app.set('view engine', '.hbs');
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
+
+//seteamos las variables deentorno 
+dotenv.config({path: './env/.env'})
+
+app.use(cookieParser())
 
 //Widdlewares
 app.use(morgan('dev'));
