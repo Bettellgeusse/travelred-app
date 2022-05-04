@@ -4,6 +4,7 @@ const { body } = require('express-validator');
 const { validateahorro } = require('../validators/ahorro');
 const pool = require('../database');
 const { isLoggedIn } = require('../lib/auth');
+const authController = require('../controller/auth')
 
 const {postAhorro, getAhorro, deleteAhorro, getEditAhorro, putahorro, getIdAhorro} = require('../controller/ahorros')
 
@@ -13,7 +14,7 @@ router.get('/add_ahorro',(req, res) => {
 
 router.post('/add_ahorro',  postAhorro );
 
-router.get('/lista_ahorros',  getAhorro);
+router.get('/lista_ahorros', authController.isAuthenticated, getAhorro);
 
 router.get('/lista_ahorros/:id',  getIdAhorro);
 

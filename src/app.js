@@ -19,6 +19,7 @@ const { database } = require('./keys');
 //inicializar 
 const app = express();
 //app.set('trust proxy', 1) // trust first proxy
+
 require('./lib/passport');
 
 //Configuraciones
@@ -35,29 +36,24 @@ app.engine('.hbs', engine({
 app.use(express.static('public'))
 
 app.set('view engine', '.hbs');
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 //seteamos las variables deentorno 
 dotenv.config({path: './env/.env'})
 
-app.use(cookieParser())
+
 
 //Widdlewares
 app.use(morgan('dev'));
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 app.use(session({
     secret: 'administrador',
     resave: false,
-    saveUninitialized: true,
-    cookie: {
-     //   sameSite: "none",
-        secure: false,
-     //   maxAge: 1000 * 60 * 60 * 24 * 7, // One Week
-      },
-    store: new MySQLStore(database)
+    saveUninitialized: false,
+
 }));
 app.use(flash());
 app.use(passport.initialize());
@@ -69,11 +65,11 @@ app.use(passport.session());
 app.use((req, res, next)  => {
     app.locals.message = req.flash('message');
     app.locals.success = req.flash('success');
-    app.locals.user = req.user;
+    //app.locals.user = req.user;
     next();
 });
 
-
+app.use(cookieParser())
 //Routes 
 app.use(require('./routes'));
 app.use(require('./routes/authentication'));

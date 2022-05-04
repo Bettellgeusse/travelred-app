@@ -9,20 +9,24 @@ const {promisify} = require('util')
 exports.register = async (req,res)=>{
 
     try {
-        const name = req.body.name
-        const apellido = req.body.apellido
-        const cedula = req.body.cedula
-        const pass = req.body.pass
-        const correo = req.body.correo
-        const celular = req.body.celular
-        const cargo = req.body.cargo
-        const comision = req.body.comision
-        let passHash = await bcryptjs.hash(pass,8)
+        // const name = req.body.name
+        // const apellido = req.body.apellido
+        // const cedula = req.body.cedula
+        // const pass = req.body.pass
+        // const correo = req.body.correo
+        // const celular = req.body.celular
+        // const cargo = req.body.cargo
+        // const comision = req.body.comision
+
+        const nuevoUsuario = req.body;
+        nuevoUsuario.ROL_PASSWORD = await bcryptjs.hash(req.body.ROL_PASSWORD,8)
+        console.log(nuevoUsuario)
         //console.log(name+" - "+apellido+" - "+cedula+" - "+passHash+" - "+correo+" - "+celular+" - "+cargo+" - "+comision)
-        conexion.query('INSERT INTO rol SET ?',{ROL_NOMBRE:name,ROL_APELLIDO:apellido,ROL_CEDULA:cedula,ROL_PASSWORD:passHash,ROL_CORREO:correo,ROL_CELULAR:celular,ROL_CARGO:cargo,ROL_VALORCOMISION:comision},(error, results)=>{
-            if(error){console.log(error)}
-            res.redirect('/')
-        })
+        // conexion.query('INSERT INTO rol SET ?',{ROL_NOMBRE:name,ROL_APELLIDO:apellido,ROL_CEDULA:cedula,ROL_PASSWORD:passHash,ROL_CORREO:correo,ROL_CELULAR:celular,ROL_CARGO:cargo,ROL_VALORCOMISION:comision},(error, results)=>{
+           conexion.query('INSERT INTO rol SET ?',[nuevoUsuario],(error, results)=>{
+          if(error){console.log(error)}
+             res.json({"message":"Usuario Agregado correctamente"})
+           })
     } catch (error) {
         console.log(error)
     }
@@ -35,52 +39,51 @@ exports.login = async (req,res)=>{
         const pass = req.body.pass
         //console.log(cedula+" - "+pass)
         if(!cedula || !pass){
-            res.render('login',{
-                alert:true,
-                alertTitle: "Advertencia",
-                alertMessage: "Ingrese un usuario y password",
-                alertIcon:'info',
-                showConfirmButton:true,
-                timer:false,
-                ruta:'login'
-            })
+            console.log("Ingrese un usuario y password")
+            // res.render('login',{
+            //     alert:true,
+            //     alertTitle: "Advertencia",
+            //     alertMessage: "Ingrese un usuario y password",
+            //     alertIcon:'info',
+            //     showConfirmButton:true,
+            //     timer:false,
+            //     ruta:'login'
+            // })
         }else{
+            console.log(cedula)
             conexion.query('SELECT * FROM rol WHERE ROL_CEDULA = ?', [cedula], async (error, results)=>{
+
                 if( results.length == 0 || ! (await bcryptjs.compare(pass, results[0].ROL_PASSWORD)) ){
-                    res.render('login', {
-                        alert: true,
-                        alertTitle: "Error",
-                        alertMessage: "Usuario y/o Password incorrectas",
-                        alertIcon:'error',
-                        showConfirmButton: true,
-                        timer: false,
-                        ruta: 'login'    
-                    })
+                    console.log(results)
+                    console.log("Usuario y/o Password incorrectas")
+                    // res.render('login', {
+                    //     alert: true,
+                    //     alertTitle: "Error",
+                    //     alertMessage: "Usuario y/o Password incorrectas",
+                    //     alertIcon:'error',
+                    //     showConfirmButton: true,
+                    //     timer: false,
+                    //     ruta: 'login'    
+                    // })
                 }else{
                     //inicio de sesión OK
                     const id = results[0].ROL_ID
                     console.log("validando id "+id);
-                    const token = jwt.sign({id:id}, process.env.JWT_SECRETO, {
-                        expiresIn: process.env.JWT_TIEMPO_EXPIRA
+                    console.log(process.env.JWT_SECRETO)
+                    const token = jwt.sign({id:id}, "super_secret", {
+                        //expiresIn: '7d'
                     })
                     //generamos el token SIN fecha de expiracion
                    //const token = jwt.sign({id: id}, process.env.JWT_SECRETO)
                    console.log("TOKEN: "+token+" para el USUARIO : "+cedula)
 
                    const cookiesOptions = {
-                        expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
+                        expires: new Date(Date.now()+ 90 * 24 * 60 * 60 * 1000),
                         httpOnly: true
                    }
+                   
                    res.cookie('jwt', token, cookiesOptions)
-                   res.render('login', {
-                        alert: true,
-                        alertTitle: "Conexión exitosa",
-                        alertMessage: "¡LOGIN CORRECTO!",
-                        alertIcon:'success',
-                        showConfirmButton: false,
-                        timer: 800,
-                        ruta: ''
-                   })
+                   res.render('inicio',)
                 }
             })
 
@@ -97,11 +100,13 @@ exports.isAuthenticated = async (req, res, next)=>{
         console.log(req.cookies.jwt)
         
         try {
-            const decodificada = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
+            const decodificada = await promisify(jwt.verify)(req.cookies.jwt, "super_secret")
+            console.log("decodificada"+decodificada.id)
             conexion.query('SELECT * FROM rol WHERE ROL_ID = ?', [decodificada.id], (error, results)=>{
                 if(!results){return next()}
+                console.log(results[0])
                 req.user = results[0]
-                console.log(req.user)
+                console.log("este es mi usuario"+req.user.ROL_ID)
                 return next()
             })
         } catch (error) {
@@ -117,5 +122,6 @@ exports.isAuthenticated = async (req, res, next)=>{
 
 exports.logout = (req, res)=>{
     res.clearCookie('jwt')   
+    console.log("elimino pa cookie")
     return res.redirect('/')
 }

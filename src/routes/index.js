@@ -5,7 +5,7 @@ const { isLoggedIn } = require('../lib/auth');
 const authController = require('../controller/auth')
 
 
-router.get('/',  (req, res) => {
+router.get('/',  authController.isAuthenticated, (req, res) => {
    res.send('Hola desde Travelred');
 });
 
