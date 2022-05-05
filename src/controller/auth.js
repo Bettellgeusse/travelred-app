@@ -40,6 +40,7 @@ exports.login = async (req,res)=>{
         //console.log(cedula+" - "+pass)
         if(!cedula || !pass){
             console.log("Ingrese un usuario y password")
+            res.json({"message":"Ingrese un usuario y password"})
             // res.render('login',{
             //     alert:true,
             //     alertTitle: "Advertencia",
@@ -56,6 +57,7 @@ exports.login = async (req,res)=>{
                 if( results.length == 0 || ! (await bcryptjs.compare(pass, results[0].ROL_PASSWORD)) ){
                     console.log(results)
                     console.log("Usuario y/o Password incorrectas")
+                    res.json({"message":"Usuario y/o Password incorrectas"})
                     // res.render('login', {
                     //     alert: true,
                     //     alertTitle: "Error",
@@ -68,6 +70,7 @@ exports.login = async (req,res)=>{
                 }else{
                     //inicio de sesión OK
                     const id = results[0].ROL_ID
+                    const id_cargo = results[0].ROL_CARGO
                     console.log("validando id "+id);
                     console.log(process.env.JWT_SECRETO)
                     const token = jwt.sign({id:id}, "super_secret", {
@@ -83,7 +86,9 @@ exports.login = async (req,res)=>{
                    }
                    
                    res.cookie('jwt', token, cookiesOptions)
-                   res.render('inicio',)
+                   //res.render('inicio',)
+                   res.json({"message":"Ingreso",
+                             "cargo":id_cargo})
                 }
             })
 
@@ -101,27 +106,30 @@ exports.isAuthenticated = async (req, res, next)=>{
         
         try {
             const decodificada = await promisify(jwt.verify)(req.cookies.jwt, "super_secret")
-            console.log("decodificada"+decodificada.id)
+            console.log("decodificada "+decodificada.id)
             conexion.query('SELECT * FROM rol WHERE ROL_ID = ?', [decodificada.id], (error, results)=>{
                 if(!results){return next()}
                 console.log(results[0])
                 req.user = results[0]
-                console.log("este es mi usuario"+req.user.ROL_ID)
-                return next()
+                req.usuario2 = results[0].ROL_ID
+                console.log("este es mi usuario "+req.user.ROL_ID)
+                //return res.json({"message":"Usuario verificado"})
+                 next()
             })
         } catch (error) {
             console.log("mal")
             console.log(error)
-            return next()
+            return res.json({"message":"Usuario NO verificado"})
         }
     }else{
-        console.log("sali")
+        console.log("salir")
         res.redirect('/login')        
     }
 }
 
 exports.logout = (req, res)=>{
     res.clearCookie('jwt')   
-    console.log("elimino pa cookie")
-    return res.redirect('/')
+    console.log("elimino la cookie")
+    res.json({"message":"Usuario salio del sistema"})
+    //return res.redirect('/')
 }
