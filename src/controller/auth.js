@@ -102,7 +102,8 @@ exports.login = async (req,res)=>{
                              "apellido":apellido,
                              "cedula":cedula,
                              "celular":celular,
-                             "rol":id_rol})
+                             "rol":id_rol,
+                             "token":token})
                 }
             })
 
