@@ -25,7 +25,8 @@ exports.register = async (req,res)=>{
         // conexion.query('INSERT INTO rol SET ?',{ROL_NOMBRE:name,ROL_APELLIDO:apellido,ROL_CEDULA:cedula,ROL_PASSWORD:passHash,ROL_CORREO:correo,ROL_CELULAR:celular,ROL_CARGO:cargo,ROL_VALORCOMISION:comision},(error, results)=>{
            conexion.query('INSERT INTO rol SET ?',[nuevoUsuario],(error, results)=>{
           if(error){console.log(error)}
-             res.json({"message":"Usuario Agregado correctamente"})
+             res.json({"status":201,
+                       "message":"La solicitud ha tenido éxito y se ha creado un nuevo recurso como resultado de ello"})
            })
     } catch (error) {
         console.log(error)
@@ -40,7 +41,8 @@ exports.login = async (req,res)=>{
         //console.log(cedula+" - "+pass)
         if(!cedula || !pass){
             console.log("Ingrese un usuario y password")
-            res.json({"message":"Ingrese un usuario y password"})
+            res.json({"status":401,
+                      "message":"Es necesario autenticar para obtener la respuesta solicitada, Ingrese un usuario y password"})
             // res.render('login',{
             //     alert:true,
             //     alertTitle: "Advertencia",
@@ -57,7 +59,8 @@ exports.login = async (req,res)=>{
                 if( results.length == 0 || ! (await bcryptjs.compare(pass, results[0].ROL_PASSWORD)) ){
                     console.log(results)
                     console.log("Usuario y/o Password incorrectas")
-                    res.json({"message":"Usuario y/o Password incorrectas"})
+                    res.json({"status":401,
+                    "message":"Es necesario autenticar para obtener la respuesta solicitada, Usuario y/o Password incorrectas"})
                     // res.render('login', {
                     //     alert: true,
                     //     alertTitle: "Error",
@@ -69,8 +72,13 @@ exports.login = async (req,res)=>{
                     // })
                 }else{
                     //inicio de sesión OK
+                    const ingreso =true;
                     const id = results[0].ROL_ID
-                    const id_cargo = results[0].ROL_CARGO
+                    const nombre = results[0].ROL_NOMBRE
+                    const apellido = results[0].ROL_APELLIDO
+                    const celular = results[0].ROL_CELULAR
+                    const id_rol = results[0].ROL_CARGO
+                  
                     console.log("validando id "+id);
                     console.log(process.env.JWT_SECRETO)
                     const token = jwt.sign({id:id}, "super_secret", {
@@ -87,8 +95,14 @@ exports.login = async (req,res)=>{
                    
                    res.cookie('jwt', token, cookiesOptions)
                    //res.render('inicio',)
-                   res.json({"message":"Ingreso",
-                             "cargo":id_cargo})
+                   res.json({"status":200,
+                             "message":"La solicitud ha tenido éxito, usuario logeado",
+                             "login":ingreso,
+                             "nombre":nombre,
+                             "apellido":apellido,
+                             "cedula":cedula,
+                             "celular":celular,
+                             "rol":id_rol})
                 }
             })
 

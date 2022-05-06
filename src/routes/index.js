@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const { isLoggedIn } = require('../lib/auth');
+var cors = require('cors')
 
 const authController = require('../controller/auth')
 
+router.use(cors())
 
 router.get('/',  authController.isAuthenticated, (req, res) => {
    res.send('Hola desde Travelred');

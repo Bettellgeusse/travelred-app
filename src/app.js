@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const morgan = require('morgan');
 const path = require('path');
+var cors = require('cors')
 const exphbs = require('express-handlebars');
 const { engine } = require('express-handlebars');
 const session = require('express-session');
@@ -22,6 +23,7 @@ const app = express();
 
 require('./lib/passport');
 
+app.use(cors())
 //Configuraciones
 app.set('port', process.env.PORT || 4000);
 app.set('views',path.join(__dirname, 'views'));
