@@ -28,7 +28,7 @@ const postAhorro = async (req, res) => {
 const getAhorro = async (req, res) => {
     const verahorro = await pool.query('SELECT a.AHO_ID ,a.AHO_ACOM,a.AHO_EXTRA,a.AHO_ABONO1,a.AHO_ABONO2,a.AHO_ABONO3,a.AHO_FECHA_ABONO1,a.AHO_FECHA_ABONO2,a.AHO_FECHA_ABONO3,a.AHO_CUEN_ABONO1, a.AHO_CUEN_ABONO2, a.AHO_CUEN_ABONO3, a.AHO_OBSERVACIONES,cue.CTA_NOMBRE AS CTA_NOMBRE1,cue2.CTA_NOMBRE AS CTA_NOMBRE2,cue3.CTA_NOMBRE AS CTA_NOMBRE3,c.CLN_ID, c.CLN_NOMBRE,c.CLN_CEDULA,c.CLN_CELULAR,t.TOU_ID,t.TOU_NOMBRE,t.TOU_FECHA FROM ahorro AS a INNER JOIN cliente AS c ON a.CLN_ID = c.CLN_ID INNER JOIN tour AS t ON a.TOU_ID = t.TOU_ID INNER JOIN cuentas AS cue ON AHO_CUEN_ABONO1 = cue.CTA_ID INNER JOIN cuentas AS cue2 ON a.AHO_CUEN_ABONO2 = cue2.CTA_ID INNER JOIN cuentas AS cue3 ON a.AHO_CUEN_ABONO3 = cue3.CTA_ID;');
     //res.render('ahorro/lista_ahorros', {verahorro:verahorro});
-    return res.json(verahorro);
+     res.json(verahorro);
 }
 
 const getIdAhorro = async (req, res) => {
