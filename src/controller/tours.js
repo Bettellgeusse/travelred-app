@@ -36,11 +36,19 @@ const getIdTours = async (req, res) => {
 }
 
 const deleteours = async (req, res) => {
-    const {id} = req.params;
-     await pool.query('DELETE FROM tour WHERE TOU_ID  = ?',[id]);
-    //req.flash('success','Tour Eliminado Correctamente');
-    //res.redirect('/tours/listar_tours');
-    res.json({"message":"Registro Eliminado  correctamente"})
+    try {
+        const {id} = req.params;
+        await pool.query('DELETE FROM tour WHERE TOU_ID  = ?',[id]);
+       //req.flash('success','Tour Eliminado Correctamente');
+       //res.redirect('/tours/listar_tours');
+       res.json({"message":"Registro Eliminado  correctamente"})
+        
+    } catch (error) {
+        console.log("error en tabla tours"+error)
+        res.json({"message":"error no puede elimiar este tour",
+                  "Error":error })
+
+    }
 }
 
 const getEditTours = async (req, res) => {
