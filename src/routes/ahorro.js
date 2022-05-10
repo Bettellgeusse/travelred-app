@@ -14,7 +14,7 @@ router.get('/add_ahorro',(req, res) => {
 
 router.post('/add_ahorro',  postAhorro );
 
-router.get('/lista_ahorros', authController.isAuthenticated, getAhorro);
+router.get('/lista_ahorros', getAhorro);
 
 router.get('/lista_ahorros/:id',  getIdAhorro);
 
