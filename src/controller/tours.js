@@ -42,7 +42,6 @@ const deleteours = async (req, res) => {
        //req.flash('success','Tour Eliminado Correctamente');
        //res.redirect('/tours/listar_tours');
        res.json({"message":"Registro Eliminado  correctamente"})
-        
     } catch (error) {
         console.log("error en tabla tours"+error)
         res.json({"message":"error no puede elimiar este tour",
