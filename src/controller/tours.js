@@ -44,7 +44,7 @@ const deleteours = async (req, res) => {
        res.json({"message":"Registro Eliminado  correctamente"})
     } catch (error) {
         console.log("error en tabla tours"+error)
-        res.json({"message":"error no puede elimiar este tour",
+        res.json({"message_error":"error no puede elimiar este tour",
                   "Error":error })
 
     }
