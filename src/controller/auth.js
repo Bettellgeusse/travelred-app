@@ -142,6 +142,18 @@ exports.isAuthenticated = async (req, res, next)=>{
     }
 }
 
+exports.userRolId = async (req, res)=>{    
+        try {
+            const {id} = req.params;
+            const user = await pool.query('SELECT * FROM rol WHERE ROL_ID = ?',[id]);
+            console.log(user);
+            return res.json(user)
+        } catch (error) {
+            console.log(error)
+            return res.json({"message":"Usuario NO verificado"})
+        }
+}
+
 exports.logout = (req, res)=>{
     res.clearCookie('jwt')   
     console.log("elimino la cookie")

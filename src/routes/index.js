@@ -60,5 +60,6 @@ router.get('/devoluciones', (req, res) => {
 router.post('/register', authController.register)
 router.post('/login', authController.login)
 router.get('/logout', authController.logout)
+router.get('/getIdTours/:id', authController.userRolId)
 
 module.exports = router;
