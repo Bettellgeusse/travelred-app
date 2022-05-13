@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
-
-
 const pool = require('../database');
 
+//Agregar
 const posCajaMayor = async (req, res) => {
     try {
         const nuevaCajamayor = req.body;
@@ -16,7 +15,7 @@ const posCajaMayor = async (req, res) => {
     }
 
 }
-
+//Listar
 const getCajaMayor = async (req, res) => {
     try {
         const verCajamayor = await pool.query('SELECT * FROM cajamayor');
@@ -28,7 +27,7 @@ const getCajaMayor = async (req, res) => {
     }
 
 }
-
+//Listar por id
 const getIdCajaMayor = async (req, res) => {
     try {
         const {id} = req.params;
@@ -42,7 +41,7 @@ const getIdCajaMayor = async (req, res) => {
     }
 
 }
-
+//Eliminar
 const deleteCajaMayor = async (req, res) => {
     try {
         const {id} = req.params;
@@ -55,7 +54,7 @@ const deleteCajaMayor = async (req, res) => {
     }
 
 }
-
+//Editar get
 const getEditCajaMayor = async (req, res) => {
     try {
         const {id} = req.params;
@@ -69,7 +68,7 @@ const getEditCajaMayor = async (req, res) => {
 
 
 }
-
+//Editar post
 const putCajaMayor = async (req, res) => {
     try {
         const {id} = req.params;

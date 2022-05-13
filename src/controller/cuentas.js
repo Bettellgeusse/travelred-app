@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
-
-
 const pool = require('../database');
 
+//Agregar
 const postCuentas = async (req, res) => {
     try {
         const nuevaCuenta = req.body;
@@ -16,7 +15,7 @@ const postCuentas = async (req, res) => {
         "Error":error })
     }
 }
-
+//Listar
 const getCuentas = async (req, res) => {
     try {
         const vercuenta = await pool.query('SELECT * FROM cuentas');
@@ -27,7 +26,7 @@ const getCuentas = async (req, res) => {
         "Error":error })
     }
 }
-
+//Listar por id
 const getIdCuentas = async (req, res) => {
     try {
         const {id} = req.params;
@@ -40,7 +39,7 @@ const getIdCuentas = async (req, res) => {
         "Error":error })
     }
 }
-
+//Eliminar
 const deleteCuentas =async (req, res) => {
     try {
         const {id} = req.params;
@@ -52,7 +51,7 @@ const deleteCuentas =async (req, res) => {
         "Error":error })
     }
 }
-
+//Editar get
 const getEditarCuentas = async (req, res) => {
     try {
         const {id} = req.params;
@@ -64,7 +63,7 @@ const getEditarCuentas = async (req, res) => {
         "Error":error })
     }  
 }
-
+//Editar post
 const putCuentas = async (req, res) => {
     try {
         const {id} = req.params;

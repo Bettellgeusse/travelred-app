@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
-
-
 const pool = require('../database');
 
+//Agregar
 const postCliente = async (req, res) => {
     try {
         const nuevoUsuario = req.body;
@@ -16,7 +15,7 @@ const postCliente = async (req, res) => {
         "Error":error })
     } 
 }
-
+//Listar
 const getCliente = async (req, res) => {
     try {
         const vercliente = await pool.query('SELECT * FROM cliente');
@@ -28,7 +27,7 @@ const getCliente = async (req, res) => {
     }
 
 }
-
+//Listar por id
 const getIdCliente = async (req, res) => {
     try {
         const {id} = req.params;
@@ -41,7 +40,7 @@ const getIdCliente = async (req, res) => {
         "Error":error })
     }
 }
-
+//Listar por cedula
 const getCedulaCLiente = async (req, res) => {
     try {
         const {cedula} = req.params;
@@ -54,7 +53,7 @@ const getCedulaCLiente = async (req, res) => {
         "Error":error })
     }
 }
-
+//Eliminar
 const deleteCliente = async (req, res) => {
     try {
         const {id} = req.params;
@@ -66,7 +65,7 @@ const deleteCliente = async (req, res) => {
         "Error":error })
     }
 }
-
+//Editar get
 const getEditCliente = async (req, res) => {
     try {
         const {id} = req.params;
@@ -79,7 +78,7 @@ const getEditCliente = async (req, res) => {
         "Error":error })
     }
 }
-
+//Editar post
 const putCliente =   async (req, res) => {
     try {
         const {id} = req.params;

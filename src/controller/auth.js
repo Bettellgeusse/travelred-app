@@ -19,6 +19,7 @@ exports.register = async (req,res)=>{
         // const comision = req.body.comision
 
         const nuevoUsuario = req.body;
+        console.log(nuevoUsuario)
         nuevoUsuario.ROL_PASSWORD = await bcryptjs.hash(req.body.ROL_PASSWORD,8)
         console.log(nuevoUsuario)
         //console.log(name+" - "+apellido+" - "+cedula+" - "+passHash+" - "+correo+" - "+celular+" - "+cargo+" - "+comision)

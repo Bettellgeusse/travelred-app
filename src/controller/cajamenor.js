@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
-
-
 const pool = require('../database');
 
+//Agregar
 const postCajaMenor = async (req, res) => {
     try {
         const nuevaCajamenor = req.body;
@@ -16,7 +15,7 @@ const postCajaMenor = async (req, res) => {
         "Error":error })
     }
 }
-
+//Listar
 const getCajaMenor = async (req, res) => {
     try {
         const verCajamenor = await pool.query('SELECT * FROM cajamenor');
@@ -27,7 +26,7 @@ const getCajaMenor = async (req, res) => {
         "Error":error })
     }
 }
-
+//Listar por id
 const getIdCajaMenor = async (req, res) => {
     try {
         const {id} = req.params;
@@ -40,7 +39,7 @@ const getIdCajaMenor = async (req, res) => {
         "Error":error })
     }
 }
-
+//Eliminar
 const deleteCajaMenor = async (req, res) => {
     try {
         const {id} = req.params;
@@ -52,7 +51,7 @@ const deleteCajaMenor = async (req, res) => {
         "Error":error })
     }
 }
-
+//Editar get
 const editarCajaMenor = async (req, res) => {
     try {
         const {id} = req.params;
@@ -64,7 +63,7 @@ const editarCajaMenor = async (req, res) => {
         "Error":error })
     }
 }
-
+//Editar post
 const putCajaMenor =  async (req, res) => {
     try {
         const {id} = req.params;

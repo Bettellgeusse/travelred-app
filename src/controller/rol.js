@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const bcryptjs = require('bcryptjs')
-
 const pool = require('../database');
 
+//Agregar
 const postRol = async (req, res) => {
     try {
         const nuevoRol = req.body;
@@ -17,7 +17,7 @@ const postRol = async (req, res) => {
         "Error":error })
     } 
 }
-
+//Listar
 const getRol = async (req, res) => {
     try {
         const verRol = await pool.query('SELECT * FROM rol');
@@ -28,7 +28,7 @@ const getRol = async (req, res) => {
         "Error":error })
     }
 }
-
+//Listar por id
 const getIdRol = async (req, res) => {
     try {
         const {id} = req.params;
@@ -41,7 +41,7 @@ const getIdRol = async (req, res) => {
         "Error":error })
     }
 }
-
+//Listar por cedula
 const getCedulaRol = async (req, res) => {
     try {
         const {cedula} = req.params;
@@ -54,7 +54,7 @@ const getCedulaRol = async (req, res) => {
         "Error":error })
     }
 }
-
+//Eliminar
 const deleteRol = async (req, res) => {
     try {
         const {id} = req.params;
@@ -66,7 +66,7 @@ const deleteRol = async (req, res) => {
         "Error":error })
     }
 }
-
+//Editar get
 const getEditRol = async (req, res) => {
     try {
         const {id} = req.params;
@@ -79,7 +79,7 @@ const getEditRol = async (req, res) => {
         "Error":error })
     }
 }
-
+//Editar post
 const putRol =   async (req, res) => {
     try {
         const {id} = req.params;

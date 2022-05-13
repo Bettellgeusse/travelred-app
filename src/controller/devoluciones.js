@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
-
-
 const pool = require('../database');
 
+//Agregar
 const postDevoluciones = async (req, res) => {
     try {
         const nuevaDevolucion = req.body;
@@ -16,7 +15,7 @@ const postDevoluciones = async (req, res) => {
         "Error":error })
     }
 }
-
+//Listar
 const getDevoluciones = async (req, res) => {
     try {
         const veradevolucion = await pool.query('SELECT d.DEV_ID ,d.DEV_ACOM,d.DEV_EXTRA,d.DEV_ABONO1,d.DEV_ABONO2,d.DEV_ABONO3,d.DEV_FECHA_ABONO1,d.DEV_FECHA_ABONO2,d.DEV_FECHA_ABONO3,d.DEV_CUEN_ABONO1, d.DEV_CUEN_ABONO2, d.DEV_CUEN_ABONO3, d.DEV_OBSERVACIONES,cue.CTA_NOMBRE AS CTA_NOMBRE1,cue2.CTA_NOMBRE AS CTA_NOMBRE2,cue3.CTA_NOMBRE AS CTA_NOMBRE3,c.CLN_ID, c.CLN_NOMBRE,c.CLN_CEDULA,c.CLN_CELULAR,t.TOU_ID,t.TOU_NOMBRE,t.TOU_FECHA FROM devolucion AS d INNER JOIN cliente AS c ON d.CLN_ID = c.CLN_ID INNER JOIN tour AS t ON d.TOU_ID = t.TOU_ID INNER JOIN cuentas AS cue ON d.DEV_CUEN_ABONO1 = cue.CTA_ID INNER JOIN cuentas AS cue2 ON d.DEV_CUEN_ABONO2 = cue2.CTA_ID INNER JOIN cuentas AS cue3 ON d.DEV_CUEN_ABONO3 = cue3.CTA_ID;');
@@ -27,7 +26,7 @@ const getDevoluciones = async (req, res) => {
         "Error":error })
     }
 }
-
+//Listar por id
 const getIdDevoluciones = async (req, res) => {
     try {
         const {id} = req.params;
@@ -40,7 +39,7 @@ const getIdDevoluciones = async (req, res) => {
         "Error":error })
     }
 }
-
+//Eliminar
 const delteteDevoluciones =  async (req, res) => {
     try {
         const {id} = req.params;
@@ -52,7 +51,7 @@ const delteteDevoluciones =  async (req, res) => {
         "Error":error })
     }
 }
-
+//Editar get
 const getEditDevoluciones = async (req, res) => {
     try {
         const {id} = req.params;
@@ -64,7 +63,7 @@ const getEditDevoluciones = async (req, res) => {
         "Error":error })
     }
 }
-
+//Editar post
 const putDevoluciones =  async (req, res) => {
     try {
         const {id} = req.params;

@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
-
-
 const pool = require('../database');
 
+//Agregar
 const poolGrupos = async (req, res) => {
     try {
         const nuevoGrupo = req.body;
@@ -16,7 +15,7 @@ const poolGrupos = async (req, res) => {
         "Error":error })
     }
 }
-
+//Listar
 const getGrupos = async (req, res) => {
     try {
         const vergrupos = await pool.query('SELECT g.GRP_ID,g.GRP_VALORTOTAL,g.GRP_VALORSALDO,g.GRP_OBSERVACION,g.CLN_ID,c.CLN_NOMBRE,c.CLN_CEDULA,c.CLN_CELULAR FROM grupo AS g INNER JOIN cliente AS c ON g.CLN_ID = c.CLN_ID;');
@@ -27,7 +26,7 @@ const getGrupos = async (req, res) => {
         "Error":error })
     }
 }
-
+//Listar por id
 const getIdGrupos = async (req, res) => {
     try {
         const {id} = req.params;
@@ -40,7 +39,7 @@ const getIdGrupos = async (req, res) => {
         "Error":error })
     }
 }
-
+//Eliminar
 const deleteGrupos = async (req, res) => {
     try {
         const {id} = req.params;
@@ -52,7 +51,7 @@ const deleteGrupos = async (req, res) => {
         "Error":error })
     }
 }
-
+//Editar get
 const getEditGrupos = async (req, res) => {
     try {
         const {id} = req.params;
@@ -64,7 +63,7 @@ const getEditGrupos = async (req, res) => {
         "Error":error })
     }
 }
-
+//Editar post
 const putGrupos = async (req, res) => {
     try {
         const {id} = req.params;

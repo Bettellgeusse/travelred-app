@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
-
-
 const pool = require('../database');
 
+//Agregar
 const postTours =  async (req, res) => {
     try {
         const nuevoTour = req.body;
@@ -17,7 +16,7 @@ const postTours =  async (req, res) => {
     }
 
 }
-
+//Listar
 const getTours = async (req, res) => {
     try {
         const vertours = await pool.query('SELECT * FROM tour');
@@ -29,7 +28,7 @@ const getTours = async (req, res) => {
     }
 
 }
-
+//Listar por id
 const getIdTours = async (req, res) => {
     try {
         const {id} = req.params;
@@ -43,7 +42,7 @@ const getIdTours = async (req, res) => {
     }
 
 }
-
+//Eliminar
 const deleteours = async (req, res) => {
     try {
         const {id} = req.params;
@@ -56,7 +55,7 @@ const deleteours = async (req, res) => {
 
     }
 }
-
+//Editar get
 const getEditTours = async (req, res) => {
     try {
         const {id} = req.params;
@@ -69,7 +68,7 @@ const getEditTours = async (req, res) => {
     }
     
 }
-
+//Editar post
 const putTours = async (req, res) => {
     try {
         const {id} = req.params;

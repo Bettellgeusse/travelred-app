@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
-
 const pool = require('../database');
 
 //Agregar
@@ -17,7 +15,6 @@ const postAhorro = async (req, res) => {
         "Error":error })
     }
 }
-
 //Listar
 const getAhorro = async (req, res) => {
     try {
