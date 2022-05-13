@@ -46,8 +46,7 @@ const deleteAhorro = async (req, res) => {
         //res.redirect('/ahorro/lista_ahorros');
         res.json({"message":"Registro Eliminado  correctamente"})
     } catch (error) {
-        console.log("error en tabla ahorros"+error)
-        res.json({"message":"error por llaver foranea",
+        res.json({"message":"Error",
                   "Error":error })
     }
 
