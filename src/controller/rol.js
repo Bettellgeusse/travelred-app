@@ -34,6 +34,7 @@ const getIdRol = async (req, res) => {
         const {id} = req.params;
         const listarRol = await pool.query('SELECT * FROM rol WHERE ROL_ID = ?',[id]);
         console.log(listarRol[0]);
+
         return res.json(listarRol[0])
     } catch (error) {
         res.json({"message_error":500,
@@ -85,6 +86,7 @@ const putRol =   async (req, res) => {
         const {id} = req.params;
         const editarRol = req.body;
         console.log("prueba viernes")
+        console.log(editarRol)
         editarRol.rol_password = await bcryptjs.hash(req.body.rol_password,8)
         console.log(editarRol)
         pool.query('UPDATE rol set ? WHERE ROL_ID = ?', [editarRol,id]);

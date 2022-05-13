@@ -70,7 +70,7 @@ exports.login = async (req,res)=>{
                     //     showConfirmButton: true,
                     //     timer: false,
                     //     ruta: 'login'    
-                    // })
+                    // })s
                 }else{
                     //inicio de sesión OK
                     const ingreso =true;
