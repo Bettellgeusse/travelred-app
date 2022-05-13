@@ -97,7 +97,7 @@ exports.login = async (req,res)=>{
                    //res.render('inicio',)
                    res.json({"status":200,
                              "message":"La solicitud ha tenido éxito, usuario logeado",
-                             "id":id,
+                             "ROL_ID":id,
                             //  "login":ingreso,
                             //  "nombre":nombre+" "+apellido,
                             //  "cedula":cedula,
