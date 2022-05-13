@@ -87,8 +87,8 @@ const putRol =   async (req, res) => {
         const editarRol = req.body;
         console.log("prueba viernes")
         console.log(editarRol)
-        editarRol.rol_password = await bcryptjs.hash(req.body.rol_password,8)
-        console.log(editarRol)
+        //editarRol.rol_password = await bcryptjs.hash(req.body.rol_password,8)
+        //console.log(editarRol)
         pool.query('UPDATE rol set ? WHERE ROL_ID = ?', [editarRol,id]);
         res.json({"message":"Registro Agregado  correctamente"})
     } catch (error) {
