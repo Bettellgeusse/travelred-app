@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
-
+const bcryptjs = require('bcryptjs')
 
 const pool = require('../database');
 
 const postRol = async (req, res) => {
     try {
         const nuevoRol = req.body;
+        nuevoRol.ROL_PASSWORD = await bcryptjs.hash(req.body.ROL_PASSWORD,8)
         console.log(nuevoRol);
-        await pool.query('INSERT INTO rol set ?', [nuevoRol]);
+        pool.query('INSERT INTO rol set ?', [nuevoRol]);
         res.json({"message":"Registro Agregado  correctamente"})
     } catch (error) {
         res.json({"message_error":500,
@@ -83,7 +84,8 @@ const putRol =   async (req, res) => {
     try {
         const {id} = req.params;
         const editarRol = req.body;
-        await pool.query('UPDATE rol set ? WHERE ROL_ID = ?', [editarRol,id]);
+        editarRol.ROL_PASSWORD = await bcryptjs.hash(req.body.ROL_PASSWORD,8)
+        pool.query('UPDATE rol set ? WHERE ROL_ID = ?', [editarRol,id]);
         res.json({"message":"Registro Agregado  correctamente"})
     } catch (error) {
         res.json({"message_error":500,
