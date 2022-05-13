@@ -84,6 +84,7 @@ app.use('/reservas',require('./routes/reservas'));
 app.use('/cajamayor',require('./routes/cajamayor'));
 app.use('/cajamenor',require('./routes/cajamenor'));
 app.use('/devoluciones',require('./routes/devoluciones'));
+app.use('/rol',require('./routes/rol'));
 
 //Public
 app.use(express.static(path.join(__dirname, 'public')));

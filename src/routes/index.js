@@ -56,6 +56,10 @@ router.get('/devoluciones', (req, res) => {
    res.render('devoluciones/add_devolucion');
 });
 
+router.get('/rol', (req, res) => {
+   res.render('rol/add_rol');
+});
+
 //rutas del controlador
 router.post('/register', authController.register)
 router.post('/login', authController.login)
