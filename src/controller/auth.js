@@ -97,11 +97,12 @@ exports.login = async (req,res)=>{
                    //res.render('inicio',)
                    res.json({"status":200,
                              "message":"La solicitud ha tenido éxito, usuario logeado",
-                             "login":ingreso,
-                             "nombre":nombre+" "+apellido,
-                             "cedula":cedula,
-                             "celular":celular,
-                             "rol":id_rol,
+                             "id":id,
+                            //  "login":ingreso,
+                            //  "nombre":nombre+" "+apellido,
+                            //  "cedula":cedula,
+                            //  "celular":celular,
+                            //  "rol":id_rol,
                              "token":token})
                 }
             })
