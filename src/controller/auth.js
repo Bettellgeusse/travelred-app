@@ -145,7 +145,7 @@ exports.isAuthenticated = async (req, res, next)=>{
 exports.userRolId = async (req, res)=>{    
         try {
             const {id} = req.params;
-            const user = await pool.query('SELECT * FROM rol WHERE ROL_ID = ?',[id]);
+            const user = await conexion.query('SELECT * FROM rol WHERE ROL_ID = ?',[id]);
             console.log(user);
             return res.json(user)
         } catch (error) {
