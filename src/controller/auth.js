@@ -146,8 +146,8 @@ exports.userRolId = async (req, res)=>{
         try {
             const {id} = req.params;
             const user = await conexion.query('SELECT * FROM rol WHERE ROL_ID = ?',[id]);
-            console.log(user);
-            return res.json(user)
+            console.log(user[0]);
+            return res.json(user[0])
         } catch (error) {
             console.log(error)
             return res.json({"message":"Usuario NO verificado"})
