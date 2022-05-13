@@ -7,7 +7,7 @@ const pool = require('../database');
 const postRol = async (req, res) => {
     try {
         const nuevoRol = req.body;
-        nuevoRol.ROL_PASSWORD = await bcryptjs.hash(req.body.ROL_PASSWORD,8)
+        nuevoRol.rol_password = await bcryptjs.hash(req.body.rol_password,8)
         console.log(nuevoRol);
         pool.query('INSERT INTO rol set ?', [nuevoRol]);
         res.json({"message":"Registro Agregado  correctamente"})

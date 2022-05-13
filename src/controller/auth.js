@@ -20,7 +20,7 @@ exports.register = async (req,res)=>{
 
         const nuevoUsuario = req.body;
         console.log(nuevoUsuario)
-        nuevoUsuario.ROL_PASSWORD = await bcryptjs.hash(req.body.ROL_PASSWORD,8)
+        nuevoUsuario.rol_password = await bcryptjs.hash(req.body.rol_password,8)
         console.log(nuevoUsuario)
         //console.log(name+" - "+apellido+" - "+cedula+" - "+passHash+" - "+correo+" - "+celular+" - "+cargo+" - "+comision)
         // conexion.query('INSERT INTO rol SET ?',{ROL_NOMBRE:name,ROL_APELLIDO:apellido,ROL_CEDULA:cedula,ROL_PASSWORD:passHash,ROL_CORREO:correo,ROL_CELULAR:celular,ROL_CARGO:cargo,ROL_VALORCOMISION:comision},(error, results)=>{
