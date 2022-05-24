@@ -11,9 +11,10 @@ const postReservas = async (req, res) => {
                            "CJA_FECHA" : nuevaReserva.RES_FECHA_ABONO1,
                            "CJA_INGRESO" : nuevaReserva.RES_ABONO1,
                            "CTA_NOMBRE1" : nuevaReserva.CTA_NOMBRE1  };                                              
-        console.log(nuevaReserva);
+        console.log("campos enviados "+nuevaReserva);
         delete nuevaReserva.CLN_NOMBRE, delete nuevaReserva.TOU_NOMBRE, delete nuevaReserva.CTA_NOMBRE1;
-        console.log(nuevaReserva);
+        console.log("campos borrados "+nuevaReserva);
+        console.log("Nuevo objeto cajamenor "+Cajamenor);
         await pool.query('INSERT INTO reserva set ?', [nuevaReserva]);
         console.log("nuevaReserva");
         const CajaMenor2 = await pool.query('SELECT CJA_SALDO FROM cajamenor WHERE CJA_ID=(SELECT MAX(CJA_ID) FROM cajamenor)');
