@@ -6,9 +6,9 @@ const pool = require('../database');
 const postCajaMenor = async (req, res) => {
     try {
         const nuevaCajamenor = req.body;
-        console.log(nuevaCajamenor);
-        nuevaCajamenor.CJA_SALDO = nuevaCajamenor.CJA_SALDO_ANTERIOR+nuevaCajamenor.CJA_INGRESO-nuevaCajamenor.CJA_EGRESO;
-        delete nuevaCajamenor.CJA_SALDO_ANTERIOR;
+        // console.log(nuevaCajamenor);
+        // nuevaCajamenor.CJA_SALDO = nuevaCajamenor.CJA_SALDO_ANTERIOR+nuevaCajamenor.CJA_INGRESO-nuevaCajamenor.CJA_EGRESO;
+        // delete nuevaCajamenor.CJA_SALDO_ANTERIOR;
         console.log(nuevaCajamenor);
         await pool.query('INSERT INTO cajamenor set ?', [nuevaCajamenor]);
         res.json({"message":"Registro Agregado  correctamente"})

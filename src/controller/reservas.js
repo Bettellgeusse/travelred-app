@@ -2,35 +2,54 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../database');
 
+// //Agregar prueba caja menor
+// const postReservas = async (req, res) => {
+//     try {
+//         const nuevaReserva = req.body;
+
+//         if(nuevaReserva.CTA_NOMBRE1 == "Caja Menor"){
+//         const Cajamenor = {"CJA_BENEFICIARIO" : nuevaReserva.CLN_NOMBRE,
+//                            "CJA_CONCEPTO" : nuevaReserva.TOU_NOMBRE,
+//                            "CJA_FECHA" : nuevaReserva.RES_FECHA_ABONO1,
+//                            "CJA_INGRESO" : nuevaReserva.valor_caja_menor,
+//                            "CTA_NOMBRE1" : nuevaReserva.CTA_NOMBRE1  }; 
+
+//         console.log("campos enviados json");                                                   
+//         console.log(nuevaReserva);
+//         delete nuevaReserva.valor_caja_menor, delete nuevaReserva.CLN_NOMBRE, delete nuevaReserva.TOU_NOMBRE, delete nuevaReserva.CTA_NOMBRE1;
+//         console.log("campos borrados");  
+//         console.log(nuevaReserva);
+//         console.log("Nuevo objeto cajamenor ");  
+//         console.log(Cajamenor);
+//         await pool.query('INSERT INTO reserva set ?', [nuevaReserva]);
+//         console.log(nuevaReserva);
+//         const CajaMenor2 = await pool.query('SELECT CJA_SALDO FROM cajamenor WHERE CJA_ID=(SELECT MAX(CJA_ID) FROM cajamenor)');
+//         console.log(CajaMenor2[0]);
+//         console.log(Cajamenor);
+//         Cajamenor.CJA_SALDO_ANTERIOR = CajaMenor2[0].CJA_SALDO;
+//         console.log(Cajamenor);
+
+        
+//             Cajamenor.CJA_SALDO = Cajamenor.CJA_SALDO_ANTERIOR+Cajamenor.CJA_INGRESO;
+//             delete Cajamenor.CTA_NOMBRE1, delete Cajamenor.CJA_SALDO_ANTERIOR;
+//             await pool.query('INSERT INTO cajamenor set ?', [Cajamenor]);
+//         }
+
+//         await pool.query('INSERT INTO reserva set ?', [nuevaReserva]);
+//         res.json({"message":"Registro Agregado  correctamente"})
+//     } catch (error) {
+//         res.json({"message_error":500,
+//         "description":"Error en query Agregar Reservas",
+//         "Error":error })
+//     }
+// }
+
 //Agregar
 const postReservas = async (req, res) => {
     try {
         const nuevaReserva = req.body;
-        const Cajamenor = {"CJA_BENEFICIARIO" : nuevaReserva.CLN_NOMBRE,
-                           "CJA_CONCEPTO" : nuevaReserva.TOU_NOMBRE,
-                           "CJA_FECHA" : nuevaReserva.RES_FECHA_ABONO1,
-                           "CJA_INGRESO" : nuevaReserva.RES_ABONO1,
-                           "CTA_NOMBRE1" : nuevaReserva.CTA_NOMBRE1  }; 
-        console.log("campos enviados json");                                                   
         console.log(nuevaReserva);
-        delete nuevaReserva.CLN_NOMBRE, delete nuevaReserva.TOU_NOMBRE, delete nuevaReserva.CTA_NOMBRE1;
-        console.log("campos borrados");  
-        console.log(nuevaReserva);
-        console.log("Nuevo objeto cajamenor ");  
-        console.log(Cajamenor);
         await pool.query('INSERT INTO reserva set ?', [nuevaReserva]);
-        console.log(nuevaReserva);
-        const CajaMenor2 = await pool.query('SELECT CJA_SALDO FROM cajamenor WHERE CJA_ID=(SELECT MAX(CJA_ID) FROM cajamenor)');
-        console.log(CajaMenor2[0]);
-        console.log(Cajamenor);
-        Cajamenor.CJA_SALDO_ANTERIOR = CajaMenor2[0].CJA_SALDO;
-        console.log(Cajamenor);
-
-        if(Cajamenor.CTA_NOMBRE1 == "Caja Menor"){
-            Cajamenor.CJA_SALDO = Cajamenor.CJA_SALDO_ANTERIOR+Cajamenor.CJA_INGRESO;
-            delete Cajamenor.CTA_NOMBRE1, delete Cajamenor.CJA_SALDO_ANTERIOR;
-            await pool.query('INSERT INTO cajamenor set ?', [Cajamenor]);
-        }
         res.json({"message":"Registro Agregado  correctamente"})
     } catch (error) {
         res.json({"message_error":500,
