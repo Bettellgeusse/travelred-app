@@ -8,7 +8,7 @@ const postCajaMenor = async (req, res) => {
         const nuevaCajamenor = req.body;
         let saldo = await pool.query('SELECT CJA_SALDO FROM cajamenor WHERE CJA_ID=(SELECT MAX(CJA_ID) FROM cajamenor)');
         saldo= saldo[0].CJA_SALDO;
-        let nuevosaldo = saldo+nuevaCajamenor.CJA_INGRESO
+        let nuevosaldo = saldo-nuevaCajamenor.CJA_EGRESO+nuevaCajamenor.CJA_INGRESO
         nuevaCajamenor.CJA_SALDO = nuevosaldo;
         console.log(nuevaCajamenor);
         await pool.query('INSERT INTO cajamenor set ?', [nuevaCajamenor]);
