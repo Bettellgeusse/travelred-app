@@ -54,7 +54,6 @@ exports.login = async (req,res)=>{
             //     ruta:'login'
             // })
         }else{
-            console.log(cedula)
             conexion.query('SELECT * FROM rol WHERE ROL_CEDULA = ?', [cedula], async (error, results)=>{
 
                 if( results.length == 0 || ! (await bcryptjs.compare(pass, results[0].ROL_PASSWORD)) ){

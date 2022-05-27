@@ -6,9 +6,10 @@ const pool = require('../database');
 const postCajaMenor = async (req, res) => {
     try {
         const nuevaCajamenor = req.body;
-        // const saldo = await pool.query('SELECT CJA_SALDO FROM cajamenor WHERE CJA_ID=(SELECT MAX(CJA_ID) FROM cajamenor)');
-        // nuevaCajamenor.CJA_SALDO = nuevaCajamenor.saldo+nuevaCajamenor.CJA_INGRESO-nuevaCajamenor.CJA_EGRESO;
-        // delete nuevaCajamenor.CJA_SALDO_ANTERIOR;
+        let saldo = await pool.query('SELECT CJA_SALDO FROM cajamenor WHERE CJA_ID=(SELECT MAX(CJA_ID) FROM cajamenor)');
+        saldo= saldo[0].CJA_SALDO;
+        let nuevosaldo = saldo+nuevaCajamenor.CJA_INGRESO
+        nuevaCajamenor.CJA_SALDO = nuevosaldo;
         console.log(nuevaCajamenor);
         await pool.query('INSERT INTO cajamenor set ?', [nuevaCajamenor]);
         res.json({"message":"Registro Agregado  correctamente"})
