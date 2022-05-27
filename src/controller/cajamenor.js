@@ -6,8 +6,8 @@ const pool = require('../database');
 const postCajaMenor = async (req, res) => {
     try {
         const nuevaCajamenor = req.body;
-        // console.log(nuevaCajamenor);
-        // nuevaCajamenor.CJA_SALDO = nuevaCajamenor.CJA_SALDO_ANTERIOR+nuevaCajamenor.CJA_INGRESO-nuevaCajamenor.CJA_EGRESO;
+        // const saldo = await pool.query('SELECT CJA_SALDO FROM cajamenor WHERE CJA_ID=(SELECT MAX(CJA_ID) FROM cajamenor)');
+        // nuevaCajamenor.CJA_SALDO = nuevaCajamenor.saldo+nuevaCajamenor.CJA_INGRESO-nuevaCajamenor.CJA_EGRESO;
         // delete nuevaCajamenor.CJA_SALDO_ANTERIOR;
         console.log(nuevaCajamenor);
         await pool.query('INSERT INTO cajamenor set ?', [nuevaCajamenor]);

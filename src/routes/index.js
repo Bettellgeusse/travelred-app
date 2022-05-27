@@ -60,6 +60,10 @@ router.get('/rol', (req, res) => {
    res.render('rol/add_rol');
 });
 
+router.get('/cambiapass', (req, res) => {
+   res.render('cambiapass/new_pass');
+});
+
 //rutas del controlador
 router.post('/register', authController.register)
 router.post('/login', authController.login)

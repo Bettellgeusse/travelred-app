@@ -85,6 +85,7 @@ app.use('/cajamayor',require('./routes/cajamayor'));
 app.use('/cajamenor',require('./routes/cajamenor'));
 app.use('/devoluciones',require('./routes/devoluciones'));
 app.use('/rol',require('./routes/rol'));
+app.use('/cambiapass',require('./routes/cambiapass'));
 
 //Public
 app.use(express.static(path.join(__dirname, 'public')));
