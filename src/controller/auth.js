@@ -80,7 +80,7 @@ exports.login = async (req,res)=>{
                     const id_rol = results[0].ROL_CARGO
                   
                     console.log("validando id "+id);
-                    console.log(process.env.JWT_SECRETO)
+                    //console.log(process.env.JWT_SECRETO)
                     const token = jwt.sign({id:id}, "super_secret", {
                         //expiresIn: '7d'
                     })
