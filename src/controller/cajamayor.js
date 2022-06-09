@@ -18,7 +18,7 @@ const posCajaMayor = async (req, res) => {
 //Listar
 const getCajaMayor = async (req, res) => {
     try {
-        const verCajamayor = await pool.query('SELECT caj.CJA_ID, caj.CJA_ORIGEN_CUENTA,cue.CTA_NOMBRE AS CTA_NOMBRE1, caj.CJA_DESTINO, caj.CJA_CONCEPTO, caj.CJA_INGRESO, caj.CJA_EGRESO, caj.CJA_FECHA, caj.CJA_OBSERVACION  FROM cajamayor AS caj INNER JOIN cuentas AS cue ON caj.CJA_ORIGEN_CUENTA = cue.CTA_ID');
+        const verCajamayor = await pool.query('SELECT caj.CJA_ID, caj.CJA_ORIGEN_CUENTA,cue.CTA_NOMBRE AS CTA_NOMBRE1, caj.CJA_DESTINO, caj.CJA_CONCEPTO, caj.CJA_INGRESO, caj.CJA_EGRESO, caj.CJA_SALDO, caj.CJA_FECHA, caj.CJA_OBSERVACION  FROM cajamayor AS caj INNER JOIN cuentas AS cue ON caj.CJA_ORIGEN_CUENTA = cue.CTA_ID');
         return res.json(verCajamayor);
     } catch (error) {
         res.json({"message_error":500,
@@ -31,7 +31,7 @@ const getCajaMayor = async (req, res) => {
 const getIdCajaMayor = async (req, res) => {
     try {
         const {id} = req.params;
-        const listarCajaMayor = await pool.query('SELECT caj.CJA_ID, caj.CJA_ORIGEN_CUENTA,cue.CTA_NOMBRE AS CTA_NOMBRE1, caj.CJA_DESTINO, caj.CJA_CONCEPTO, caj.CJA_INGRESO, caj.CJA_EGRESO, caj.CJA_FECHA, caj.CJA_OBSERVACION  FROM cajamayor AS caj INNER JOIN cuentas AS cue ON caj.CJA_ORIGEN_CUENTA = cue.CTA_ID  = ?',[id]);
+        const listarCajaMayor = await pool.query('SELECT caj.CJA_ID, caj.CJA_ORIGEN_CUENTA,cue.CTA_NOMBRE AS CTA_NOMBRE1, caj.CJA_DESTINO, caj.CJA_CONCEPTO, caj.CJA_INGRESO, caj.CJA_EGRESO, caj.CJA_SALDO, caj.CJA_FECHA, caj.CJA_OBSERVACION  FROM cajamayor AS caj INNER JOIN cuentas AS cue ON caj.CJA_ORIGEN_CUENTA = cue.CTA_ID  = ?',[id]);
         console.log(listarCajaMayor[0]);
         return res.json(listarCajaMayor[0])
     } catch (error) {
