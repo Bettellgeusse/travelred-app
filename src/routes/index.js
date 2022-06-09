@@ -52,6 +52,10 @@ router.get('/cajamenor', (req, res) => {
    res.render('cajamenor/add_cajamenor');
 });
 
+router.get('/cajacuentas', (req, res) => {
+   res.render('cajacuentas/add_cajacuentas');
+});
+
 router.get('/devoluciones', (req, res) => {
    res.render('devoluciones/add_devolucion');
 });

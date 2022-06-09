@@ -83,6 +83,7 @@ app.use('/tours',require('./routes/tours'));
 app.use('/reservas',require('./routes/reservas'));
 app.use('/cajamayor',require('./routes/cajamayor'));
 app.use('/cajamenor',require('./routes/cajamenor'));
+app.use('/cajacuentas',require('./routes/cajacuentas'));
 app.use('/devoluciones',require('./routes/devoluciones'));
 app.use('/rol',require('./routes/rol'));
 app.use('/cambiapass',require('./routes/cambiapass'));
