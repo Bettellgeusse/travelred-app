@@ -34,7 +34,7 @@ const getCajaCuentas = async (req, res) => {
 const getIdCajaCuentas = async (req, res) => {
     try {
         const {id} = req.params;
-        const listarCajaCuentas = await pool.query('SELECT caj.CJA_ID, caj.CJA_CUENTAS, cue.CTA_BANCO, cue.CTA_NUMEROCUENTA, cue.CTA_NOMBRE, caj.CJA_FECHA, caj.CJA_BENEFICIARIO, caj.CJA_CONCEPTO, caj.CJA_INGRESO, caj.CJA_EGRESO, caj.CJA_SALDO FROM cajacuentas AS caj INNER JOIN cuentas AS cue ON caj.CJA_CUENTAS = cue.CTA_ID  WHERE CJA_ID = ?',[id]);
+        const listarCajaCuentas = await pool.query('SELECT caj.CJA_ID, caj.CJA_CUENTAS, cue.CTA_BANCO, cue.CTA_NUMEROCUENTA, cue.CTA_NOMBRE, caj.CJA_FECHA, caj.CJA_BENEFICIARIO, caj.CJA_CONCEPTO, caj.CJA_INGRESO, caj.CJA_EGRESO, caj.CJA_SALDO FROM cajacuentas AS caj INNER JOIN cuentas AS cue ON caj.CJA_CUENTAS = cue.CTA_ID  WHERE caj.CJA_ID = ?',[id]);
         console.log(listarCajaCuentas[0]);
         return res.json(listarCajaCuentas[0])
     } catch (error) {
