@@ -12,9 +12,9 @@ module.exports = {
 
 database: {
    host: 'travel.app.travelred.com.co',
-   user: 'apptravel',
+   user: 'apitravel',
    password: 'aLpxZGLGMAD92L6',
-   database: 'apptravelred'
+   database: 'apitravelred'
    
   } 
 
@@ -26,7 +26,7 @@ database: {
    //  host: 'localhost',
    //  user: 'root',
    //  password: '',
-   //  database: 'travel'
+   //  database: 'travelred'
    // } 
 
 
