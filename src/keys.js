@@ -11,7 +11,7 @@ module.exports = {
 // Dream
 
 database: {
-   host: 'travel.app.travelred.com.co',
+   host: 'mysql.travelred.com.co',
    user: 'apitravel',
    password: 'aLpxZGLGMAD92L6',
    database: 'apitravelred'

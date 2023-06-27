@@ -7,7 +7,7 @@ const router = express.Router();
 const pool = require('../database');
 const { isLoggedIn } = require('../lib/auth');
 const { json } = require('express/lib/response');
-const {postCliente, getCliente, getIdCliente, getCedulaCLiente, deleteCliente, getEditCliente, putCliente} = require('../controller/clientes');
+const {postCliente, getCliente, getIdCliente, getCedulaCLiente, deleteCliente, getEditCliente, putCliente, getIdGrupo} = require('../controller/clientes');
 
 router.get('/add', (req, res) => {
        res.render('clientes/add');
@@ -20,6 +20,8 @@ router.post('/add',  postCliente);
 router.get('/lista_clientes',  getCliente);
     
 router.get('/lista_clientes/:id',  getIdCliente);
+
+router.get('/lista_grupos/:id',  getIdGrupo);
 
 router.get('/lista_clientes_cedula/:cedula',  getCedulaCLiente);
 

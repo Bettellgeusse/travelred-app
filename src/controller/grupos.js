@@ -9,6 +9,7 @@ const poolGrupos = async (req, res) => {
         console.log(nuevoGrupo);
         await pool.query('INSERT INTO grupo set ?', [nuevoGrupo]);
         res.json({"message":"Registro Agregado  correctamente"})
+        
     } catch (error) {
         res.json({"message_error":500,
         "description":"Error en query Agregar Grupos",
@@ -18,7 +19,8 @@ const poolGrupos = async (req, res) => {
 //Listar
 const getGrupos = async (req, res) => {
     try {
-        const vergrupos = await pool.query('SELECT g.GRP_ID,g.GRP_VALORTOTAL,g.GRP_VALORSALDO,g.GRP_OBSERVACION,g.CLN_ID,c.CLN_NOMBRE,c.CLN_CEDULA,c.CLN_CELULAR FROM grupo AS g INNER JOIN cliente AS c ON g.CLN_ID = c.CLN_ID;');
+        const vergrupos = await pool.query('SELECT * FROM grupo');
+     // const vergrupos = await pool.query('SELECT g.GRP_ID,g.GRP_VALORTOTAL,g.GRP_VALORSALDO,g.GRP_OBSERVACION,g.CLN_ID,c.CLN_NOMBRE,c.CLN_CEDULA,c.CLN_CELULAR FROM grupo AS g INNER JOIN cliente AS c ON g.CLN_ID = c.CLN_ID;');
         return res.json(vergrupos);
     } catch (error) {
         res.json({"message_error":500,

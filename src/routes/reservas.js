@@ -4,7 +4,7 @@ const router = express.Router();
 const { validatereservas } = require('../validators/reservas');
 const pool = require('../database');
 const { isLoggedIn } = require('../lib/auth');
-const {postReservas, getReservas, getIdReservas, deleteReservas, getEditReservas,putReservas} =require('../controller/reservas')
+const {postReservas, getReservas, getIdReservas, deleteReservas, getEditReservas,putReservas, getIdReservasGrupo} =require('../controller/reservas')
 
 router.get('/add_reserva',(req, res) => {
        res.render('reservas/add_reserva');
@@ -15,6 +15,8 @@ router.post('/add_reserva', postReservas);
 router.get('/listar_reservas', getReservas );
 
 router.get('/listar_reservas/:id', getIdReservas );
+
+router.get('/listar_reservasGrupo/:id', getIdReservasGrupo );
 
 router.get('/eliminar_reserva/:id', deleteReservas);
 
